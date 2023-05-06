@@ -1,5 +1,5 @@
 import { Storage } from "@/storage";
-import { User, UserLogin } from "../types"
+import { User, UserLogin } from "../type/types"
 
 export const login = (login: UserLogin): User => {
     const user = getUserByEmailToLocalStorage(login.email);

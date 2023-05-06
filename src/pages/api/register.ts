@@ -1,5 +1,5 @@
 import { register } from '@/localStorage/localStorage';
-import { User } from '@/types'
+import { User } from '@/type/types';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = User;
