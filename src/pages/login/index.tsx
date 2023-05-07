@@ -2,13 +2,21 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
+import { signIn } from 'next-auth/react';
 
 const Login = () => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
 
-  const submitHandler = (e: any) => {
+  const submitHandler = async (e: any) => {
     e.preventDefault();
+
+    await signIn('credentials', {
+      redirect: false,
+      email,
+      password
+    }).then(data => console.log(data))
+    .catch(err => console.log(err))
   }
 
   return (
