@@ -1,4 +1,4 @@
-import { register } from '@/localStorage/localStorage';
+import { register } from '@/storage/localStorage';
 import { User } from '@/type/types';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
