@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import Link from "next/link";
 import { useState } from "react";
 
 const Register = () => {
@@ -40,6 +41,11 @@ const Register = () => {
             </div>
             <div className="mb-3">
               <button type="submit" className="btn btn-primary">Register</button>
+            </div>
+            <div>
+              <p>
+                You have an account? <Link href="/register">Register</Link>
+              </p>
             </div>
           </form>
         </div>
