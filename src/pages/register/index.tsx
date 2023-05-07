@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { useState } from "react";
 
 const Register = () => {
@@ -7,8 +8,13 @@ const Register = () => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
 
-  const submitHandler = (e: any) => {
+  const submitHandler = async (e: any) => {
     e.preventDefault();
+
+    await axios.post("/api/register", {
+      name, email, password
+    }).then(data => console.log(data))
+      .catch(err => console.log(err))
   };
 
   return (
