@@ -1,8 +1,12 @@
+import { NavBar } from '@/components/NavBar'
 import React from 'react'
 
 const Global = () => {
   return (
-    <h1>Global</h1>
+    <>
+      <NavBar />
+      <h1>Global</h1>
+    </>
   )
 }
 
