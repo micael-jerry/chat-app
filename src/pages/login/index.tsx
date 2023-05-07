@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
-import { signIn } from 'next-auth/react';
+import { signIn } from 'next-auth/react'
 
 const Login = () => {
   const [email, setEmail] = useState<string>("")
@@ -16,42 +16,28 @@ const Login = () => {
       email,
       password
     }).then(data => console.log(data))
-    .catch(err => console.log(err))
+      .catch(err => console.log(err))
   }
 
   return (
     <div >
       <div >
-        <div >
-          <form
-            onSubmit={submitHandler}
-          >
-            <h1>Login</h1>
-            <div>
-              <label htmlFor="email_field">
-                Email address
-              </label>
-              <input
-                type="email"
-                id="email_field"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+        <div className="container">
+          <form onSubmit={submitHandler}>
+            <div className="mb-3">
+              <h1>Login</h1>
             </div>
-            <div >
-              <label htmlFor="password_field">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password_field"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+            <div className="mb-3">
+              <label htmlFor="email_field" className="form-label">Email address</label>
+              <input type="email" className="form-control" id="email_field" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <button type="submit">
-              Sign in
-            </button>
+            <div className="mb-3">
+              <label htmlFor="password_field" className="form-label">Password</label>
+              <input type="password" id="password_field" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
+            <div className="mb-3">
+              <button className="btn btn-primary" type="submit">Sign in</button>
+            </div>
             <div>
               <p>
                 Not a member? <Link href="/register">Register</Link>
