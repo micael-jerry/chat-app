@@ -1,4 +1,5 @@
 import { useSession, signOut } from 'next-auth/react'
+import Link from 'next/link'
 import React from 'react'
 
 export const NavBar: React.FC = () => {
@@ -7,7 +8,7 @@ export const NavBar: React.FC = () => {
         <>
             <nav className="navbar navbar-light bg-light">
                 <div className="container-fluid">
-                    <a className="navbar-brand">Navbar</a>
+                    <Link href={"/"} className='navbar-brand'>NavBar</Link>
                     {
                         (data?.user !== undefined) && (
                             <div className="d-flex">
