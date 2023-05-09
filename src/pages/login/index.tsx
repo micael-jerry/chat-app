@@ -3,10 +3,12 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { signIn } from 'next-auth/react'
+import { useRouter } from "next/router";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
+  const route = useRouter();
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
@@ -15,7 +17,10 @@ const Login = () => {
       redirect: false,
       email,
       password
-    }).then(data => console.log(data))
+    }).then(data => {
+      console.log(data);
+      route.push('/global')
+    })
       .catch(err => console.log(err))
   }
 

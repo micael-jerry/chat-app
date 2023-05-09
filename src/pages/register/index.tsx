@@ -2,19 +2,24 @@
 
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 const Register = () => {
   const [name, setName] = useState<string>("")
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
+  const route = useRouter();
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
 
     await axios.post("/api/register", {
       name, email, password
-    }).then(data => console.log(data))
+    }).then(data => {
+      console.log(data);
+      route.push('/global')
+    })
       .catch(err => console.log(err))
   };
 
@@ -44,7 +49,7 @@ const Register = () => {
             </div>
             <div>
               <p>
-                You have an account? <Link href="/login">Login</Link>
+                You have an account? <Link href="/login">Register</Link>
               </p>
             </div>
           </form>
