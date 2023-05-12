@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { getUserByEmailToLocalStorage } from "@/storage/localStorage";
+import { logToBackEnd } from "@/clients/login";
 
 export default NextAuth({
   session: {
@@ -10,12 +10,8 @@ export default NextAuth({
     CredentialsProvider({
       async authorize(credentials, req) {
         const { email, password } = credentials;
-        const user = getUserByEmailToLocalStorage(email);
+        const user = logToBackEnd(email,password)
         if (!user) {
-          throw new Error("Invalid Email or Password");
-        }
-        const isPasswordMatched = (password === user.password)
-        if (!isPasswordMatched) {
           throw new Error("Invalid Email or Password");
         }
         return user;
