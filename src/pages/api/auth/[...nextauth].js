@@ -6,11 +6,21 @@ export default NextAuth({
   session: {
     strategy: "jwt",
   },
+  callbacks: {
+    async jwt({ token, user }) {
+      user && (token.user = user)
+      return token
+    },
+    async session({ session, token }) {
+      session.user = token.user
+      return session
+    }
+  },
   providers: [
     CredentialsProvider({
       async authorize(credentials, req) {
         const { email, password } = credentials;
-        const user = logToBackEnd(email,password)
+        const user = logToBackEnd(email, password)
         if (!user) {
           throw new Error("Invalid Email or Password");
         }
