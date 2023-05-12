@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const logToBackEnd = async (email: string, password: string) => {
-    const res = await axios.post('http://localhost:8080/users/login', {
+export const login = async (email: string, password: string) => {
+    const res = await axios.post(`${process.env.BASE_URL}/users/login`, {
         email: email,
         password: password
     }).then(res => {
@@ -9,7 +9,7 @@ export const logToBackEnd = async (email: string, password: string) => {
     })
         .catch(err => {
             console.log(err);
-            return null
+            return null;
         });
     return res;
 }

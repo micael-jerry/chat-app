@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { logToBackEnd } from "@/clients/login";
+import { login } from "@/clients/authentification";
 
 export default NextAuth({
   session: {
@@ -8,19 +8,19 @@ export default NextAuth({
   },
   callbacks: {
     async jwt({ token, user }) {
-      user && (token.user = user)
-      return token
+      user && (token.user = user);
+      return token;
     },
     async session({ session, token }) {
-      session.user = token.user
-      return session
+      session.user = token.user;
+      return session;
     }
   },
   providers: [
     CredentialsProvider({
       async authorize(credentials, req) {
         const { email, password } = credentials;
-        const user = logToBackEnd(email, password)
+        const user = login(email, password);
         if (!user) {
           throw new Error("Invalid Email or Password");
         }
