@@ -1,7 +1,8 @@
+import { User } from "@/types/login";
 import axios from "axios";
 
 export const login = async (email: string, password: string) => {
-    const res = await axios.post(`${process.env.BASE_URL}/users/login`, {
+    const res = await axios.post('http://localhost:8080/users/login', {
         email: email,
         password: password
     }).then(res => {
@@ -10,6 +11,17 @@ export const login = async (email: string, password: string) => {
         .catch(err => {
             console.log(err);
             return null;
+        });
+    return res;
+}
+
+export const register = async (user: object) => {
+    const res = await axios.post('http://localhost:8080/users', user)
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err;
         });
     return res;
 }

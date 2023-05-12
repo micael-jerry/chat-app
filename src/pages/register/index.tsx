@@ -1,26 +1,19 @@
 "use client";
 
-import axios from "axios";
+import { register } from "@/clients/authentification";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 const Register = () => {
   const [name, setName] = useState<string>("")
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
-  const route = useRouter();
+  const [bio, setBio] = useState<string>("")
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
 
-    await axios.post("/api/register", {
-      name, email, password
-    }).then(data => {
-      console.log(data);
-      route.push('/global')
-    })
-      .catch(err => console.log(err))
+    register({name,email,bio,password})
   };
 
   return (
@@ -39,6 +32,10 @@ const Register = () => {
             <div className="mb-3">
               <label htmlFor="email_field" className="form-label">Email address</label>
               <input className="form-control" type="email" id="email_field" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="bio_field" className="form-label">Password</label>
+              <input type="text" className="form-control" id="bio_field" value={bio} onChange={(e) => setBio(e.target.value)} />
             </div>
             <div className="mb-3">
               <label htmlFor="password_field" className="form-label">Password</label>
