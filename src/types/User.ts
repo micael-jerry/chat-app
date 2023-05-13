@@ -11,7 +11,7 @@ export type User = {
     "token": string
 }
 
-export type Login = {
+export type LogResponse = {
     "status": boolean,
     "user": User
 }

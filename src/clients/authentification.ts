@@ -1,4 +1,3 @@
-import { User } from "@/types/login";
 import axios from "axios";
 
 export const login = async (email: string, password: string) => {
