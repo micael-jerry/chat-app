@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
-import { signIn } from 'next-auth/react'
 import { useRouter } from "next/router";
+import { login } from "@/operations/login/login";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("")
@@ -13,15 +13,14 @@ const Login = () => {
   const submitHandler = async (e: any) => {
     e.preventDefault();
 
-    await signIn('credentials', {
-      redirect: false,
-      email,
-      password
-    }).then(data => {
-      console.log(data);
-      route.push('/global')
-    })
-      .catch(err => console.log(err))
+    login(email, password)
+      .then(res => {
+        route.push('/global')
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   return (
