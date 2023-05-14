@@ -1,7 +1,8 @@
 "use client";
 
-import { register } from "@/clients/authentification";
+import { register } from "@/operations/register/register";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 const Register = () => {
@@ -9,11 +10,19 @@ const Register = () => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
   const [bio, setBio] = useState<string>("")
+  const route = useRouter()
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
 
-    register({name,email,bio,password})
+    register({ name, email, bio, password })
+      .then(res => {
+        route.push("/global");
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   };
 
   return (
