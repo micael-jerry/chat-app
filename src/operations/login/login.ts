@@ -1,4 +1,4 @@
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
 export const login = async (email: string, password: string) => {
   const signin = await signIn("credentials", {
@@ -7,4 +7,8 @@ export const login = async (email: string, password: string) => {
     password,
   });
   return signin;
+};
+
+export const logout = () => {
+  signOut({ redirect: false });
 };
