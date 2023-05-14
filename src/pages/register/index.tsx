@@ -88,7 +88,7 @@ const Register = () => {
             </div>
             <div>
               <p>
-                You have an account? <Link href="/login">Register</Link>
+                You have an account? <Link href="/login">Login</Link>
               </p>
             </div>
           </form>
