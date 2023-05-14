@@ -1,26 +1,29 @@
 import axios from "axios";
 
 export const login = async (email: string, password: string) => {
-    const res = await axios.post('http://localhost:8080/users/login', {
-        email: email,
-        password: password
-    }).then(res => {
-        return res.data.user;
+  const res = await axios
+    .post("http://localhost:8080/users/login", {
+      email: email,
+      password: password,
     })
-        .catch(err => {
-            console.log(err);
-            return null;
-        });
-    return res;
-}
+    .then((res) => {
+      return res.data.user;
+    })
+    .catch((err) => {
+      console.log(err);
+      return null;
+    });
+  return res;
+};
 
 export const register = async (user: object) => {
-    const res = await axios.post('http://localhost:8080/users', user)
-        .then(res => {
-            return res;
-        })
-        .catch(err => {
-            return err;
-        });
-    return res;
-}
+  const res = await axios
+    .post("http://localhost:8080/users", user)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      return err;
+    });
+  return res;
+};

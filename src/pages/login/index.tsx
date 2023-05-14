@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import React, { useState } from "react";
@@ -6,41 +6,59 @@ import { useRouter } from "next/router";
 import { login } from "@/operations/login/login";
 
 const Login = () => {
-  const [email, setEmail] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const route = useRouter();
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
 
     login(email, password)
-      .then(res => {
-        route.push('/global')
+      .then((res) => {
+        route.push("/global");
         console.log(res);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
-      })
-  }
+      });
+  };
 
   return (
-    <div >
-      <div >
+    <div>
+      <div>
         <div className="container">
           <form onSubmit={submitHandler}>
             <div className="mb-3">
               <h1>Login</h1>
             </div>
             <div className="mb-3">
-              <label htmlFor="email_field" className="form-label">Email address</label>
-              <input type="email" className="form-control" id="email_field" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <label htmlFor="email_field" className="form-label">
+                Email address
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                id="email_field"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="mb-3">
-              <label htmlFor="password_field" className="form-label">Password</label>
-              <input type="password" id="password_field" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <label htmlFor="password_field" className="form-label">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password_field"
+                className="form-control"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <div className="mb-3">
-              <button className="btn btn-primary" type="submit">Sign in</button>
+              <button className="btn btn-primary" type="submit">
+                Sign in
+              </button>
             </div>
             <div>
               <p>
@@ -51,7 +69,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Login;

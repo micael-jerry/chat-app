@@ -14,7 +14,7 @@ export default NextAuth({
     async session({ session, token }) {
       session.user = token.user;
       return session;
-    }
+    },
   },
   providers: [
     CredentialsProvider({
@@ -30,5 +30,5 @@ export default NextAuth({
   ],
   pages: {
     signIn: "/login",
-  }
+  },
 });
