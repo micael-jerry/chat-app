@@ -23,9 +23,9 @@ export const NavBar: React.FC = () => {
           {data?.user !== undefined && (
             <div className="d-flex">
               <div>
-                <button className="btn btn-outline-success">
+                <Link href={"/profile"} className="btn btn-outline-success">
                   {data?.user?.name}
-                </button>
+                </Link>
               </div>
               <div>
                 <button
