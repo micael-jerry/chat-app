@@ -18,7 +18,7 @@ export const NavBar: React.FC = () => {
       <nav className="navbar navbar-light bg-light">
         <div className="container-fluid">
           <Link href={"/"} className="navbar-brand">
-            NavBar
+            CHAT-APP
           </Link>
           {data?.user !== undefined && (
             <div className="d-flex">
