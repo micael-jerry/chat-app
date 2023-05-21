@@ -1,5 +1,14 @@
 import { NavBar } from "@/components/NavBar";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
+  return {
+    props: {
+      session: session
+    }
+  }
+}
 
 const Profile = () => {
   const { data } = useSession();
