@@ -1,5 +1,22 @@
 import Link from "next/link";
 import styles from "../styles/home.module.css";
+import { getSession } from "next-auth/react";
+import { GetSessionType } from "@/types/Session";
+
+export const getServerSideProps = async (context: any) => {
+  const session: GetSessionType = await getSession(context);
+  if (session) {
+    return {
+      redirect: {
+        destination: '/channel',
+        permanent: false,
+      },
+    }
+  }
+  return {
+    props: { session }
+  }
+};
 
 export default function Home() {
   return (
