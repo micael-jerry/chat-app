@@ -1,5 +1,5 @@
 export type CreateChannelType = {
-    name: string;
-    type: "public" | "private"
-    members: string
-}
+  name: string;
+  type: "public" | "private";
+  members: string;
+};

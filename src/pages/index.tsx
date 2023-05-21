@@ -8,14 +8,14 @@ export const getServerSideProps = async (context: any) => {
   if (session) {
     return {
       redirect: {
-        destination: '/channel',
+        destination: "/channel",
         permanent: false,
       },
-    }
+    };
   }
   return {
-    props: { session }
-  }
+    props: { session },
+  };
 };
 
 export default function Home() {

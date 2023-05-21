@@ -21,11 +21,13 @@ export const Create = ({ session }: { session: GetSessionType }) => {
   const [channel, setChannel] = useState<CreateChannelType>({
     name: "",
     type: "public",
-    members: ""
+    members: "",
   });
   const route = useRouter();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { id, value } = e.target;
     setChannel((prev: any) => {
       return { ...prev, [id]: value };
@@ -44,8 +46,12 @@ export const Create = ({ session }: { session: GetSessionType }) => {
   };
 
   return (
-    <CreateChannel channel={channel} handleChange={handleChange} submitHandler={submitHandler} />
+    <CreateChannel
+      channel={channel}
+      handleChange={handleChange}
+      submitHandler={submitHandler}
+    />
   );
-}
+};
 
 export default Create;

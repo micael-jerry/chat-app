@@ -6,23 +6,29 @@ import { getSession } from "next-auth/react";
 import React from "react";
 
 export async function getServerSideProps(context: any) {
-  const session: GetSessionType = await getSession(context)
+  const session: GetSessionType = await getSession(context);
   const user: User = session?.user;
   if (!session) {
     return {
       redirect: {
-        destination: '/',
+        destination: "/",
         permanent: false,
       },
-    }
+    };
   }
-  let channels = await getChannels(user?.token!)
+  let channels = await getChannels(user?.token!);
   return {
-    props: { session, channels }
-  }
+    props: { session, channels },
+  };
 }
 
-const Channel = ({ session, channels }: { session: GetSessionType, channels: any }) => {
+const Channel = ({
+  session,
+  channels,
+}: {
+  session: GetSessionType;
+  channels: any;
+}) => {
   console.log(channels);
   return (
     <>
