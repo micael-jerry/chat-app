@@ -18,6 +18,11 @@ export type User = {
   token?: string;
 } | undefined
 
+export type UserLogin = {
+  email: string;
+  password: string;
+}
+
 export type LogResponse = {
   status: boolean;
   user: User;

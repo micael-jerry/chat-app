@@ -1,19 +1,23 @@
-"use client";
-
-import Link from "next/link";
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { login } from "@/operations/login/login";
+import { UserLogin } from "@/types/User";
+import { Login } from "@/components/authentification/Login";
 
-const Login = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+const LoginPage = () => {
+  const [userLogin, setUserLogin] = useState<UserLogin>({ email: "", password: "" })
   const route = useRouter();
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setUserLogin((prev: any) => {
+      return { ...prev, [id]: value }
+    })
+  }
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
-
-    login(email, password)
+    login(userLogin.email, userLogin.password)
       .then((res) => {
         route.push("/global");
         console.log(res);
@@ -24,52 +28,8 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div>
-        <div className="container">
-          <form onSubmit={submitHandler}>
-            <div className="mb-3">
-              <h1>Login</h1>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="email_field" className="form-label">
-                Email address
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email_field"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="password_field" className="form-label">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password_field"
-                className="form-control"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <button className="btn btn-primary" type="submit">
-                Sign in
-              </button>
-            </div>
-            <div>
-              <p>
-                Not a member? <Link href="/register">Register</Link>
-              </p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+    <Login userLogin={userLogin} handleChange={handleChange} submitHandler={submitHandler} />
   );
 };
 
-export default Login;
+export default LoginPage;
