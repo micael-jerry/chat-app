@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { login } from "@/clients/authentification";
+import { login } from "@/api/authentification";
 
 export default NextAuth({
   session: {
