@@ -8,13 +8,13 @@ export const getServerSideProps = async (context: any) => {
   const session: GetSessionType = await getSession(context);
   return {
     props: {
-      session: session
-    }
-  }
-}
+      session: session,
+    },
+  };
+};
 
 const Profile = ({ session }: { session: GetSessionType }) => {
-  const user: User = session?.user
+  const user: User = session?.user;
 
   return (
     <>

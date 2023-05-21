@@ -1,10 +1,16 @@
-import { UserLogin } from "@/types/User"
-import Link from "next/link"
+import { UserLogin } from "@/types/User";
+import Link from "next/link";
 import { ChangeEvent } from "react";
 
-export const Login = (
-  { userLogin, handleChange, submitHandler }:
-    { userLogin: UserLogin, handleChange: (e: ChangeEvent<HTMLInputElement>) => void, submitHandler: (e: any) => void }) => {
+export const Login = ({
+  userLogin,
+  handleChange,
+  submitHandler,
+}: {
+  userLogin: UserLogin;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  submitHandler: (e: any) => void;
+}) => {
   const { email, password } = userLogin;
   return (
     <div>
@@ -52,5 +58,5 @@ export const Login = (
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

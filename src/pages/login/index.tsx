@@ -5,15 +5,18 @@ import { UserLogin } from "@/types/User";
 import { Login } from "@/components/authentification/Login";
 
 const LoginPage = () => {
-  const [userLogin, setUserLogin] = useState<UserLogin>({ email: "", password: "" })
+  const [userLogin, setUserLogin] = useState<UserLogin>({
+    email: "",
+    password: "",
+  });
   const route = useRouter();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setUserLogin((prev: any) => {
-      return { ...prev, [id]: value }
-    })
-  }
+      return { ...prev, [id]: value };
+    });
+  };
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
@@ -28,7 +31,11 @@ const LoginPage = () => {
   };
 
   return (
-    <Login userLogin={userLogin} handleChange={handleChange} submitHandler={submitHandler} />
+    <Login
+      userLogin={userLogin}
+      handleChange={handleChange}
+      submitHandler={submitHandler}
+    />
   );
 };
 
