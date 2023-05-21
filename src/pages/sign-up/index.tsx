@@ -1,101 +1,41 @@
 "use client";
 
+import { Register } from "@/components/authentification/Register";
 import { register } from "@/operations/register/register";
-import Link from "next/link";
+import { CreateUser } from "@/types/User";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
-const Register = () => {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [bio, setBio] = useState<string>("");
+const RegisterPage = () => {
+  const [createUser, setCreateUser] = useState<CreateUser>({
+    name: "",
+    email: "",
+    password: "",
+    bio: null,
+  });
   const route = useRouter();
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setCreateUser((prev: any) => {
+      return { ...prev, [id]: value };
+    });
+  };
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
-
-    register({ name, email, bio, password })
-      .then((res) => {
-        route.push("/global");
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    register(createUser).then((res) => {
+      route.push("/login");
+    });
   };
 
   return (
-    <div>
-      <div>
-        <div className="container">
-          <form onSubmit={submitHandler}>
-            <div className="mb-3">
-              <h1>Register</h1>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="name_field" className="form-label">
-                Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="name_field"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="email_field" className="form-label">
-                Email address
-              </label>
-              <input
-                className="form-control"
-                type="email"
-                id="email_field"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="bio_field" className="form-label">
-                Password
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="bio_field"
-                value={bio}
-                onChange={(e) => setBio(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="password_field" className="form-label">
-                Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="password_field"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <button type="submit" className="btn btn-primary">
-                Register
-              </button>
-            </div>
-            <div>
-              <p>
-                You have an account? <Link href="/login">Login</Link>
-              </p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+    <Register
+      createUser={createUser}
+      handleChange={handleChange}
+      submitHandler={submitHandler}
+    />
   );
 };
 
-export default Register;
+export default RegisterPage;

@@ -1,11 +1,10 @@
 import { register as authRegister } from "@/clients/authentification";
-import { login } from "@/operations/login/login";
-import { CreateUser } from "@/types/CreateUser";
+import { CreateUser } from "@/types/User";
 
-export const register = async (userRegister: CreateUser) => {
-  authRegister(userRegister)
+export const register = async (createUser: CreateUser) => {
+  authRegister(createUser)
     .then((res) => {
-      return login(userRegister.email, userRegister.password);
+      return res;
     })
     .catch((err) => {
       return err;
