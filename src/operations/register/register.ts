@@ -1,4 +1,4 @@
-import { register as authRegister } from "@/clients/authentification";
+import { register as authRegister } from "@/api/authentification";
 import { CreateUser } from "@/types/User";
 
 export const register = async (createUser: CreateUser) => {
