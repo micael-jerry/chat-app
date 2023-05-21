@@ -22,7 +22,7 @@ const LoginPage = () => {
     e.preventDefault();
     login(userLogin.email, userLogin.password)
       .then((res) => {
-        route.push("/global");
+        route.push("/channel");
         console.log(res);
       })
       .catch((err) => {

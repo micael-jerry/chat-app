@@ -17,13 +17,13 @@ export async function getServerSideProps(context: any) {
   }
 }
 
-const Global = () => {
+const Channel = () => {
   return (
     <>
       <NavBar />
-      <h1>Global</h1>
+      <h1>Channel</h1>
     </>
   );
 };
 
-export default Global;
+export default Channel;
