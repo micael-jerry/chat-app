@@ -1,6 +1,7 @@
 import { createChannel } from "@/api/channel";
 import { CreateChannel } from "@/components/channel/CreateChannel";
-import { CreateChannelType } from "@/types/Channel";
+import { createChannelInputTypeToCreateChannelType } from "@/operations/channel/createChannelMapper";
+import { CreateChannelInputType } from "@/types/Channel";
 import { GetSessionType } from "@/types/Session";
 import { User } from "@/types/User";
 import { getSession } from "next-auth/react";
@@ -18,7 +19,7 @@ export const getServerSideProps = async (context: any) => {
 
 export const Create = ({ session }: { session: GetSessionType }) => {
   const user: User = session?.user;
-  const [channel, setChannel] = useState<CreateChannelType>({
+  const [channel, setChannel] = useState<CreateChannelInputType>({
     name: "",
     type: "public",
     members: "",
@@ -28,7 +29,11 @@ export const Create = ({ session }: { session: GetSessionType }) => {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { id, value } = e.target;
+    let { id, value } = e.target;
+    const regexMembers = /^[0-9,]+$/;
+    if (id == "members" && !regexMembers.test(value)) {
+      value = channel.members;
+    }
     setChannel((prev: any) => {
       return { ...prev, [id]: value };
     });
@@ -36,13 +41,13 @@ export const Create = ({ session }: { session: GetSessionType }) => {
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
-    await createChannel(user?.token!, channel)
+    await createChannel(
+      user?.token!,
+      createChannelInputTypeToCreateChannelType(channel)
+    )
       .then((res) => {
         route.push("/channel");
       })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   return (

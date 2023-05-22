@@ -1,8 +1,8 @@
-import { CreateChannelType } from "@/types/Channel";
+import { CreateChannelInputType } from "@/types/Channel";
 import { ChangeEvent } from "react";
 
 export const CreateChannel: React.FC<{
-  channel: CreateChannelType;
+  channel: CreateChannelInputType;
   handleChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   submitHandler: (e: any) => void;
 }> = ({ channel, handleChange, submitHandler }) => {
@@ -41,6 +41,20 @@ export const CreateChannel: React.FC<{
                 <option value="private">private</option>
               </select>
             </div>
+            {channel.type === "private" && (
+              <div className="mb-3">
+                <label htmlFor="members" className="form-label">
+                  Members
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="members"
+                  value={members}
+                  onChange={(e) => handleChange(e)}
+                />
+              </div>
+            )}
             <div className="mb-3">
               <button className="btn btn-primary" type="submit">
                 Create

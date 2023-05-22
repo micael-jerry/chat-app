@@ -1,4 +1,6 @@
 import { Channel } from "@/types/Channel";
+import avatar from "../../ressources/avatar.webp"
+import Image from "next/image";
 
 export const ChannelItem: React.FC<{ channel: Channel }> = ({ channel }) => {
   const { name, type, owner, id } = channel;
@@ -7,8 +9,8 @@ export const ChannelItem: React.FC<{ channel: Channel }> = ({ channel }) => {
       <a href="#!" className="d-flex justify-content-between">
         <div className="d-flex flex-row">
           <div>
-            <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+            <Image
+              src={avatar}
               alt="avatar"
               className="d-flex align-self-center me-3"
               width="60"

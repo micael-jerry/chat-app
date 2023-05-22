@@ -1,5 +1,6 @@
 import axios from "axios";
 import { config } from "./config";
+import { CreateChannelType } from "@/types/Channel";
 
 export const getChannels = async (token: string) => {
   const request = await axios
@@ -8,18 +9,23 @@ export const getChannels = async (token: string) => {
       return res.data;
     })
     .catch((err) => {
+      console.log(err);
       return err;
     });
   return request;
 };
 
-export const createChannel = async (token: string, channel: object) => {
+export const createChannel = async (
+  token: string,
+  channel: CreateChannelType
+) => {
   const res = await axios
     .post("http://localhost:8080/channel", channel, config(token))
     .then((res) => {
       return res;
     })
     .catch((err) => {
+      console.log(err);
       return err;
     });
   return res;
