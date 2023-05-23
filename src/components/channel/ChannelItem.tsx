@@ -1,5 +1,5 @@
 import { Channel } from "@/types/Channel";
-import avatar from "../../ressources/avatar.webp"
+import avatar from "../../ressources/avatar.webp";
 import Image from "next/image";
 import Link from "next/link";
 

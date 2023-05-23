@@ -57,10 +57,6 @@ const Channel = ({
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-6 col-lg-7 col-xl-8">
-                      {/* <MessageRenderer/> */}
-                      {/* <MessageInput/> */}
-                    </div>
                   </div>
                 </div>
               </div>

@@ -8,13 +8,15 @@ import Link from "next/link";
 import { ChannelListRenderer } from "@/components/channel/ChannelListRenderer";
 import { GetChannelsType } from "@/types/Channel";
 import { getMessagesByChannelId } from "@/api/message";
+import { GetMessagesType } from "@/types/Message";
+import { MessageRenderer } from "@/components/message/MessageRenderer";
 
 export async function getServerSideProps(context: any) {
-  const regexChannelId = /^\d+$/
+  const regexChannelId = /^\d+$/;
   const session: GetSessionType = await getSession(context);
   const user: User = session?.user;
 
-  const channelId: string = context.query.channelId
+  const channelId: string = context.query.channelId;
   if (!session || !regexChannelId.test(channelId)) {
     return {
       redirect: {
@@ -33,12 +35,13 @@ export async function getServerSideProps(context: any) {
 const MessageChannel = ({
   session,
   channels,
-  messages
+  messages,
 }: {
   session: GetSessionType;
   channels: GetChannelsType;
-  messages: any
+  messages: GetMessagesType;
 }) => {
+  const userLogedId: number = session?.user!.id;
   console.log(messages);
   return (
     <>
@@ -66,7 +69,10 @@ const MessageChannel = ({
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-7 col-xl-8">
-                      {/* <MessageRenderer/> */}
+                      <MessageRenderer
+                        userLogedId={userLogedId}
+                        messages={messages.messages}
+                      />
                       {/* <MessageInput/> */}
                     </div>
                   </div>

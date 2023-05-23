@@ -44,10 +44,9 @@ export const Create = ({ session }: { session: GetSessionType }) => {
     await createChannel(
       user?.token!,
       createChannelInputTypeToCreateChannelType(channel)
-    )
-      .then((res) => {
-        route.push("/channel");
-      })
+    ).then((res) => {
+      route.push("/channel");
+    });
   };
 
   return (
