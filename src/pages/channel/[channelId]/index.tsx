@@ -10,6 +10,7 @@ import { GetChannelsType } from "@/types/Channel";
 import { getMessagesByChannelId } from "@/api/message";
 import { GetMessagesType } from "@/types/Message";
 import { MessageRenderer } from "@/components/message/MessageRenderer";
+import { MessageInput } from "@/components/message/MessageInput";
 
 export async function getServerSideProps(context: any) {
   const regexChannelId = /^\d+$/;
@@ -41,7 +42,7 @@ const MessageChannel = ({
   channels: GetChannelsType;
   messages: GetMessagesType;
 }) => {
-  const userLogedId: number = session?.user!.id;
+  const user: User = session?.user;
   console.log(messages);
   return (
     <>
@@ -70,10 +71,10 @@ const MessageChannel = ({
                     </div>
                     <div className="col-md-6 col-lg-7 col-xl-8">
                       <MessageRenderer
-                        userLogedId={userLogedId}
+                        userLogedId={user?.id!}
                         messages={messages.messages}
                       />
-                      {/* <MessageInput/> */}
+                      <MessageInput/>
                     </div>
                   </div>
                 </div>
