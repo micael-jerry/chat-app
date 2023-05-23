@@ -1,5 +1,5 @@
 import { Message } from "@/types/Message";
-import styles from "../../styles/channel.module.css";
+import styles from "../../styles/styles.module.css";
 import { SendedMessage } from "./SendedMessage";
 import { ReceivedMessage } from "./ReceivedMessage";
 

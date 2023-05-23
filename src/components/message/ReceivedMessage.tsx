@@ -1,4 +1,4 @@
-import styles from "../../styles/channel.module.css";
+import styles from "../../styles/styles.module.css";
 import avatar from "../../ressources/avatar.webp";
 import Image from "next/image";
 import { Message } from "@/types/Message";

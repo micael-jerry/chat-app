@@ -3,7 +3,7 @@ import { NavBar } from "@/components/NavBar";
 import { GetSessionType } from "@/types/Session";
 import { User } from "@/types/User";
 import { getSession } from "next-auth/react";
-import styles from "../../styles/channel.module.css";
+import styles from "../../styles/styles.module.css";
 import Link from "next/link";
 import { ChannelListRenderer } from "@/components/channel/ChannelListRenderer";
 import { GetChannelsType } from "@/types/Channel";
