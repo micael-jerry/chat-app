@@ -9,6 +9,12 @@ export type Message = {
   updatedAt: string;
 };
 
+export type CreateMessage = {
+  channelId: number
+  recipientId: number | null
+  content: string
+}
+
 export type SenderMessage = {
   id: number;
   name: string;

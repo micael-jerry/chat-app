@@ -1,5 +1,6 @@
 import axios from "axios";
 import { config } from "./config";
+import { CreateMessage } from "@/types/Message";
 
 export const getMessagesByChannelId = async (
   token: string,
@@ -15,4 +16,20 @@ export const getMessagesByChannelId = async (
       return err;
     });
   return request;
+};
+
+export const sendMessage = async (
+  token: string,
+  message: CreateMessage
+) => {
+  const res = await axios
+    .post("http://localhost:8080/message", message, config(token))
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+      return err;
+    });
+  return res;
 };
