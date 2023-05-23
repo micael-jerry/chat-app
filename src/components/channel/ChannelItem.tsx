@@ -1,12 +1,13 @@
 import { Channel } from "@/types/Channel";
 import avatar from "../../ressources/avatar.webp"
 import Image from "next/image";
+import Link from "next/link";
 
 export const ChannelItem: React.FC<{ channel: Channel }> = ({ channel }) => {
   const { name, type, owner, id } = channel;
   return (
     <li className="p-2 border-bottom">
-      <a href="#!" className="d-flex justify-content-between">
+      <Link href={`/channel/${id}`} className="d-flex justify-content-between">
         <div className="d-flex flex-row">
           <div>
             <Image
@@ -26,7 +27,7 @@ export const ChannelItem: React.FC<{ channel: Channel }> = ({ channel }) => {
           <p className="small text-muted mb-1">{type}</p>
           <span className="badge bg-danger rounded-pill float-end">{id}</span>
         </div>
-      </a>
+      </Link>
     </li>
   );
 };
