@@ -29,7 +29,7 @@ export async function getServerSideProps(context: any) {
   let channels = await getChannels(user?.token!);
   let messages = await getMessagesByChannelId(user?.token!, Number(channelId));
   return {
-    props: { session, channels, messages },
+    props: { session, channels, messages: { ...messages, channelId } },
   };
 }
 
@@ -43,7 +43,6 @@ const MessageChannel = ({
   messages: GetMessagesType;
 }) => {
   const user: User = session?.user;
-  console.log(messages);
   return (
     <>
       <NavBar />
@@ -74,7 +73,7 @@ const MessageChannel = ({
                         userLogedId={user?.id!}
                         messages={messages.messages}
                       />
-                      <MessageInput/>
+                      <MessageInput channelId={messages.channelId} userLoged={user} />
                     </div>
                   </div>
                 </div>

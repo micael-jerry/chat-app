@@ -23,5 +23,6 @@ export type SenderMessage = {
 
 export type GetMessagesType = {
   status: boolean;
+  channelId: number
   messages: Message[];
 };
