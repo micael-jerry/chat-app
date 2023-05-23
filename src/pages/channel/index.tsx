@@ -52,7 +52,7 @@ const Channel = ({
                             Create Channel
                           </Link>
                         </div>
-                        <div id={styles.gauche}>
+                        <div id={styles.leftSide}>
                           <ChannelListRenderer channels={channels.channels} />
                         </div>
                       </div>

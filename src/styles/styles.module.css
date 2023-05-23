@@ -15,12 +15,12 @@
   box-shadow: inset 0px 0px 0px 1px transparent;
 }
 
-#gauche {
+#leftSide {
   position: relative;
   height: 400px;
 }
 
-#droite {
+#rightSide {
   position: relative;
   height: 400px;
 }

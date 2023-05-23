@@ -12,7 +12,7 @@ export const MessageRenderer = ({
 }) => {
   return (
     <div
-      id={styles.droite}
+      id={styles.rightSide}
       className="pt-3 pe-3"
       data-mdb-perfect-scrollbar="true"
     >
