@@ -73,7 +73,10 @@ const MessageChannel = ({
                         userLogedId={user?.id!}
                         messages={messages.messages}
                       />
-                      <MessageInput channelId={messages.channelId} userLoged={user} />
+                      <MessageInput
+                        channelId={messages.channelId}
+                        userLoged={user}
+                      />
                     </div>
                   </div>
                 </div>

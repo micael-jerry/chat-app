@@ -1,24 +1,29 @@
 import { CreateUser } from "@/types/User";
 import Link from "next/link";
-import { ChangeEvent } from "react";
-
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ShowError } from "../ShowError";
+import CreateUserSchema from "@/schema/CreateUserSchema";
 export const Register = ({
-  createUser,
-  handleChange,
   submitHandler,
 }: {
-  createUser: CreateUser;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  submitHandler: (e: any) => void;
+  submitHandler: (createUser: CreateUser) => void;
 }) => {
-  const { name, email, password, bio } = createUser;
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(CreateUserSchema),
+  });
+
   return (
     <div>
       <div>
         <div className="container">
-          <form onSubmit={submitHandler}>
+          <form onSubmit={handleSubmit(submitHandler)}>
             <div className="mb-3">
-              <h1>Login</h1>
+              <h1>Register</h1>
             </div>
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
@@ -28,9 +33,9 @@ export const Register = ({
                 type="text"
                 className="form-control"
                 id="name"
-                value={name}
-                onChange={(e) => handleChange(e)}
+                {...register("name")}
               />
+              {errors.name && <ShowError>{errors.name.message}</ShowError>}
             </div>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">
@@ -40,21 +45,9 @@ export const Register = ({
                 type="email"
                 className="form-control"
                 id="email"
-                value={email}
-                onChange={(e) => handleChange(e)}
+                {...register("email")}
               />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                className="form-control"
-                value={password}
-                onChange={(e) => handleChange(e)}
-              />
+              {errors.email && <ShowError>{errors.email.message}</ShowError>}
             </div>
             <div className="mb-3">
               <label htmlFor="bio" className="form-label">
@@ -64,9 +57,37 @@ export const Register = ({
                 type="text"
                 className="form-control"
                 id="bio"
-                value={bio ? bio : ""}
-                onChange={(e) => handleChange(e)}
+                {...register("bio")}
               />
+              {errors.bio && <ShowError>{errors.bio.message}</ShowError>}
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                className="form-control"
+                {...register("password")}
+              />
+              {errors.password && (
+                <ShowError>{errors.password.message}</ShowError>
+              )}
+            </div>
+            <div className="mb-3">
+              <label htmlFor="confirmPassword" className="form-label">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                id="confirmPassword"
+                className="form-control"
+                {...register("confirmPassword")}
+              />
+              {errors.confirmPassword && (
+                <ShowError>{errors.confirmPassword.message}</ShowError>
+              )}
             </div>
             <div className="mb-3">
               <button className="btn btn-primary" type="submit">

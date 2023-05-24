@@ -1,8 +1,8 @@
 export type CreateUser = {
-  name: string;
-  email: string;
-  bio: string | null;
-  password: string;
+  name?: string;
+  email?: string;
+  bio?: string | null;
+  password?: string;
 };
 
 export type User =

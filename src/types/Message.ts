@@ -10,10 +10,10 @@ export type Message = {
 };
 
 export type CreateMessage = {
-  channelId: number
-  recipientId: number | null
-  content: string
-}
+  channelId: number;
+  recipientId: number | null;
+  content: string;
+};
 
 export type SenderMessage = {
   id: number;
@@ -23,6 +23,6 @@ export type SenderMessage = {
 
 export type GetMessagesType = {
   status: boolean;
-  channelId: number
+  channelId: number;
   messages: Message[];
 };

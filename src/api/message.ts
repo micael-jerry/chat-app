@@ -18,10 +18,7 @@ export const getMessagesByChannelId = async (
   return request;
 };
 
-export const sendMessage = async (
-  token: string,
-  message: CreateMessage
-) => {
+export const sendMessage = async (token: string, message: CreateMessage) => {
   const res = await axios
     .post("http://localhost:8080/message", message, config(token))
     .then((res) => {
