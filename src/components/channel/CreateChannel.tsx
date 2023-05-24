@@ -1,19 +1,28 @@
 import { CreateChannelInputType } from "@/types/Channel";
-import { ChangeEvent } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import CreateChannelSchema from "@/schema/CreateChannelSchema";
+import { ShowError } from "../ShowError";
 
 export const CreateChannel: React.FC<{
-  channel: CreateChannelInputType;
-  handleChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
-  submitHandler: (e: any) => void;
-}> = ({ channel, handleChange, submitHandler }) => {
-  const { name, type, members } = channel;
+  submitHandler: (channel: CreateChannelInputType) => void;
+}> = ({ submitHandler }) => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    watch,
+  } = useForm({
+    resolver: yupResolver(CreateChannelSchema),
+  });
+  const typeValue = watch("type");
   return (
     <div>
       <div>
         <div className="container">
-          <form onSubmit={submitHandler}>
+          <form onSubmit={handleSubmit(submitHandler)}>
             <div className="mb-3">
-              <h1>Login</h1>
+              <h1>Create Channel</h1>
             </div>
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
@@ -23,25 +32,21 @@ export const CreateChannel: React.FC<{
                 type="text"
                 className="form-control"
                 id="name"
-                value={name}
-                onChange={(e) => handleChange(e)}
+                {...register("name")}
               />
+              {errors.name && <ShowError>{errors.name.message}</ShowError>}
             </div>
             <div className="mb-3">
               <label htmlFor="type" className="form-label">
                 Type (public / private)
               </label>
-              <select
-                name="type"
-                id="type"
-                value={type}
-                onChange={handleChange}
-              >
+              <select id="type" className="form-select" {...register("type")}>
                 <option value="public">public</option>
                 <option value="private">private</option>
               </select>
+              {errors.type && <ShowError>{errors.type.message}</ShowError>}
             </div>
-            {channel.type === "private" && (
+            {typeValue === "private" && (
               <div className="mb-3">
                 <label htmlFor="members" className="form-label">
                   Members
@@ -50,9 +55,11 @@ export const CreateChannel: React.FC<{
                   type="text"
                   className="form-control"
                   id="members"
-                  value={members}
-                  onChange={(e) => handleChange(e)}
+                  {...register("members")}
                 />
+                {errors.members && (
+                  <ShowError>{errors.members.message}</ShowError>
+                )}
               </div>
             )}
             <div className="mb-3">

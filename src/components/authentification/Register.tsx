@@ -96,7 +96,7 @@ export const Register = ({
             </div>
             <div>
               <p>
-                Not a member? <Link href="/sign-up">Sign-up</Link>
+                Do you have account ? <Link href="/login">Login</Link>
               </p>
             </div>
           </form>

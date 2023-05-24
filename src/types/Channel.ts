@@ -5,9 +5,9 @@ export type CreateChannelType = {
 };
 
 export type CreateChannelInputType = {
-  name: string;
-  type: "public" | "private";
-  members: string;
+  name?: string;
+  type?: "public" | "private";
+  members?: string;
 };
 
 export type Channel = {
