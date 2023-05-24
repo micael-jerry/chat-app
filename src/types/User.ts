@@ -21,8 +21,8 @@ export type User =
   | undefined;
 
 export type UserLogin = {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 };
 
 export type LogResponse = {

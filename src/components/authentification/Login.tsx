@@ -1,22 +1,27 @@
 import { UserLogin } from "@/types/User";
 import Link from "next/link";
-import { ChangeEvent } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import UserLoginSchema from "@/schema/UserLoginSchema";
+import { ShowError } from "../ShowError";
 
 export const Login = ({
-  userLogin,
-  handleChange,
   submitHandler,
 }: {
-  userLogin: UserLogin;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  submitHandler: (e: any) => void;
+  submitHandler: (userLogin: UserLogin) => void;
 }) => {
-  const { email, password } = userLogin;
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(UserLoginSchema),
+  });
   return (
     <div>
       <div>
         <div className="container">
-          <form onSubmit={submitHandler}>
+          <form onSubmit={handleSubmit(submitHandler)}>
             <div className="mb-3">
               <h1>Login</h1>
             </div>
@@ -28,9 +33,9 @@ export const Login = ({
                 type="email"
                 className="form-control"
                 id="email"
-                value={email}
-                onChange={(e) => handleChange(e)}
+                {...register("email")}
               />
+              {errors.email && <ShowError>{errors.email.message}</ShowError>}
             </div>
             <div className="mb-3">
               <label htmlFor="password" className="form-label">
@@ -40,9 +45,11 @@ export const Login = ({
                 type="password"
                 id="password"
                 className="form-control"
-                value={password}
-                onChange={(e) => handleChange(e)}
+                {...register("password")}
               />
+              {errors.password && (
+                <ShowError>{errors.password.message}</ShowError>
+              )}
             </div>
             <div className="mb-3">
               <button className="btn btn-primary" type="submit">
