@@ -15,12 +15,12 @@ export const CreateChannel: React.FC<{
   } = useForm({
     resolver: yupResolver(CreateChannelSchema),
   });
-  const typeValue = watch("type");
+  const typeValue = watch("type") === undefined ? "private" : watch("type")
   return (
     <div>
       <div>
         <div className="container">
-          <form onSubmit={handleSubmit(submitHandler)}>
+          <form name="createChannelForm" onSubmit={handleSubmit(submitHandler)}>
             <div className="mb-3">
               <h1>Create Channel</h1>
             </div>
@@ -41,8 +41,8 @@ export const CreateChannel: React.FC<{
                 Type (public / private)
               </label>
               <select id="type" className="form-select" {...register("type")}>
+                <option defaultChecked={true} value="private">private</option>
                 <option value="public">public</option>
-                <option value="private">private</option>
               </select>
               {errors.type && <ShowError>{errors.type.message}</ShowError>}
             </div>

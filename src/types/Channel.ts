@@ -25,6 +25,11 @@ export type ChannelOwner = {
   email: string;
 };
 
+export type GetChannelType = {
+  status: boolean;
+  channel: Channel
+}
+
 export type GetChannelsType = {
   status: boolean;
   channels: Channel[];

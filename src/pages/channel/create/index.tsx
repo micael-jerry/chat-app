@@ -1,7 +1,7 @@
 import { createChannel } from "@/api/channel";
 import { CreateChannel } from "@/components/channel/CreateChannel";
 import { createChannelInputTypeToCreateChannelType } from "@/operations/channel/createChannelMapper";
-import { CreateChannelInputType } from "@/types/Channel";
+import { CreateChannelInputType, GetChannelType } from "@/types/Channel";
 import { GetSessionType } from "@/types/Session";
 import { User } from "@/types/User";
 import { getSession } from "next-auth/react";
@@ -33,8 +33,8 @@ export const Create = ({ session }: { session: GetSessionType }) => {
       user?.token!,
       createChannelInputTypeToCreateChannelType(channel)
     ).then((res) => {
-      console.log(res.data);
-      route.push("/channel");
+      const channelCreated: GetChannelType = res.data;
+      route.push(`/channel/${channelCreated.channel.id}`);
     });
   };
 
