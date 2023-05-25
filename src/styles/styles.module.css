@@ -1,5 +1,7 @@
 #section {
   background-color: #cdc4f9;
+  width: 100vw;
+  height: 100vh;
 }
 
 #chat3 {
@@ -17,12 +19,12 @@
 
 #leftSide {
   position: relative;
-  height: 400px;
+  height: 600px;
 }
 
 #rightSide {
   position: relative;
-  height: 400px;
+  height: 600px;
 }
 
 .imageavatar {
