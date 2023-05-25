@@ -15,6 +15,19 @@ export const getChannels = async (token: string) => {
   return request;
 };
 
+export const getChannelById = async (token: string,channelId: number) => {
+  const request = await axios
+    .get(`http://localhost:8080/channel/${channelId}`, config(token))
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+      return err;
+    });
+  return request;
+};
+
 export const createChannel = async (
   token: string,
   channel: CreateChannelType
