@@ -9,7 +9,7 @@ const LoginPage = () => {
   const submitHandler = async (userLogin: UserLogin) => {
     login(userLogin.email!, userLogin.password!)
       .then((res) => {
-        route.push("/channel");
+        route.push("/profile");
       })
       .catch((err) => {
         console.log(err);

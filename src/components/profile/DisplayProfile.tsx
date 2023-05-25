@@ -1,4 +1,6 @@
 import { User } from "@/types/User";
+import avatar from "../../ressources/avatar.webp";
+import Image from "next/image";
 
 export const DisplayProfile: React.FC<{ user: User }> = ({ user }) => {
   return (
@@ -9,11 +11,7 @@ export const DisplayProfile: React.FC<{ user: User }> = ({ user }) => {
             <div className="card mb-3">
               <div className="row g-0">
                 <div className="col-md-4 gradient-custom text-center text-white">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                    alt="Avatar"
-                    className="img-fluid my-5"
-                  />
+                  <Image src={avatar} alt="Avatar" className="img-fluid my-5" />
                   <h5>Marie Horwitz</h5>
                   <p>Web Designer</p>
                   <i className="far fa-edit mb-5"></i>

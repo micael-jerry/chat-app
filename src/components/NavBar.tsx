@@ -9,8 +9,8 @@ export const NavBar: React.FC = () => {
   const route = useRouter();
 
   const logOutAndRedirect = () => {
-    logout();
     route.push("/");
+    logout();
   };
 
   return (

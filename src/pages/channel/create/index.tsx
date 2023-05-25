@@ -9,6 +9,14 @@ import { useRouter } from "next/router";
 
 export const getServerSideProps = async (context: any) => {
   const session: GetSessionType = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: {
       session: session,
