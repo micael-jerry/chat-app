@@ -21,7 +21,7 @@ export const Register = ({
     <div>
       <div>
         <div className="container">
-          <form onSubmit={handleSubmit(submitHandler)}>
+          <form name="registrationForm" onSubmit={handleSubmit(submitHandler)}>
             <div className="mb-3">
               <h1>Register</h1>
             </div>
@@ -42,7 +42,7 @@ export const Register = ({
                 Email address
               </label>
               <input
-                type="email"
+                type="text"
                 className="form-control"
                 id="email"
                 {...register("email")}
