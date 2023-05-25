@@ -29,12 +29,11 @@ export const Create = ({ session }: { session: GetSessionType }) => {
   const route = useRouter();
 
   const submitHandler = async (channel: CreateChannelInputType) => {
-    console.log(channel);
-
     await createChannel(
       user?.token!,
       createChannelInputTypeToCreateChannelType(channel)
     ).then((res) => {
+      console.log(res.data);
       route.push("/channel");
     });
   };

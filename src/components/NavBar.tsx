@@ -22,14 +22,19 @@ export const NavBar: React.FC = () => {
           </Link>
           {data?.user !== undefined && (
             <div className="d-flex">
-              <div>
-                <Link href={"/profile"} className="btn btn-outline-success">
+              <div className="me-2 ms-2">
+                <Link href={"/channel"} className="btn btn-outline-secondary">
+                  Channel
+                </Link>
+              </div>
+              <div className="me-2 ms-2">
+                <Link href={"/profile"} className="btn btn-outline-secondary">
                   {data?.user?.name}
                 </Link>
               </div>
-              <div>
+              <div className="me-2 ms-2">
                 <button
-                  className="btn btn-outline-success"
+                  className="btn btn-outline-secondary"
                   onClick={() => logOutAndRedirect()}
                 >
                   SignOut
