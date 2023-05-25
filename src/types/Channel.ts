@@ -27,8 +27,8 @@ export type ChannelOwner = {
 
 export type GetChannelType = {
   status: boolean;
-  channel: Channel
-}
+  channel: Channel;
+};
 
 export type GetChannelsType = {
   status: boolean;

@@ -4,7 +4,7 @@ export const createChannelInputTypeToCreateChannelType = (
   input: CreateChannelInputType
 ): CreateChannelType => {
   if (input.members && input.type === "public") {
-    input.members = ""
+    input.members = "";
   }
   return {
     name: input.name!,

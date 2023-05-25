@@ -10,9 +10,9 @@ export type Message = {
 };
 
 export type CreateMessage = {
-  channelId: number;
-  recipientId: number | null;
-  content: string;
+  channelId?: number | null;
+  recipientId?: number | null;
+  content?: string;
 };
 
 export type SenderMessage = {

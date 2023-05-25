@@ -71,7 +71,7 @@ const MessageChannel = ({
                     <div className="col-md-6 col-lg-7 col-xl-8">
                       <MessageRenderer
                         userLogedId={user?.id!}
-                        messages={messages.messages}
+                        messages={messages.messages.reverse()}
                       />
                       <MessageInput
                         channelId={messages.channelId}
