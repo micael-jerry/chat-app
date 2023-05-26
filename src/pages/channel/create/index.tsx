@@ -1,6 +1,6 @@
 import { createChannel } from "@/api/channel";
 import { CreateChannel } from "@/components/channel/CreateChannel";
-import { createChannelInputTypeToCreateChannelType } from "@/operations/channel/createChannelMapper";
+import { createChannelInputTypeToCreateChannelType } from "@/operations/channel/ChannelMapper";
 import { CreateChannelInputType, GetChannelType } from "@/types/Channel";
 import { GetSessionType } from "@/types/Session";
 import { User } from "@/types/User";
