@@ -9,5 +9,5 @@ export const register = async (createUser: CreateUser) => {
     .catch((err) => {
       return err;
     });
-    return register
+  return register;
 };

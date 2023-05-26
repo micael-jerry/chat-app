@@ -10,7 +10,7 @@ const RegisterPage = () => {
   const route = useRouter();
 
   const submitHandler = async (createUser: CreateUser) => {
-    register(createUser).then( async (res) => {
+    register(createUser).then(async (res) => {
       await login(createUser.email!, createUser.password!).then((res) => {
         route.push("/profile");
       });

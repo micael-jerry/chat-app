@@ -26,7 +26,7 @@ export async function getServerSideProps(context: any) {
       },
     };
   }
-  let channel = await getChannelById(user?.token!, Number(channelId))
+  let channel = await getChannelById(user?.token!, Number(channelId));
   let channels = await getChannels(user?.token!);
   let messages = await getMessagesByChannelId(user?.token!, Number(channelId));
   return {
@@ -79,7 +79,10 @@ const MessageChannel = ({
                           </div>
                           <div className="d-flex">
                             <div className="me-2 ms-2">
-                              <Link href={`/channel/edit/${channel.channel.id}`} className="btn btn-outline-secondary">
+                              <Link
+                                href={`/channel/edit/${channel.channel.id}`}
+                                className="btn btn-outline-secondary"
+                              >
                                 Edit
                               </Link>
                             </div>
