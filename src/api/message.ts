@@ -30,3 +30,16 @@ export const sendMessage = async (token: string, message: CreateMessage) => {
     });
   return res;
 };
+
+export const getMessageByUser = async (token: string, userId: number) => {
+  const res = await axios
+    .get(`http://localhost:8080/messages/${userId}`, config(token))
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+      return err;
+    });
+  return res;
+}
