@@ -2,16 +2,15 @@ import styles from "../../styles/styles.module.css";
 import avatar from "../../ressources/avatar.webp";
 import Image from "next/image";
 import { CreateMessage } from "@/types/Message";
-import { User } from "@/types/User";
-import { sendMessage } from "@/api/message";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CreateMessageSchema from "@/schema/CreateMessageSchema";
 import { ShowError } from "../ShowError";
 
-export const MessageInput: React.FC<{ channelId: number; userLoged: User }> = ({
+export const MessageInput: React.FC<{ channelId?: number; recipientId?: number; submitMessage: (message: CreateMessage) => void }> = ({
   channelId,
-  userLoged,
+  recipientId,
+  submitMessage,
 }) => {
   const {
     register,
@@ -19,16 +18,12 @@ export const MessageInput: React.FC<{ channelId: number; userLoged: User }> = ({
     handleSubmit,
   } = useForm({
     defaultValues: {
-      channelId: channelId,
+      channelId: channelId && channelId,
+      recipientId: recipientId && recipientId,
       content: "",
     },
     resolver: yupResolver(CreateMessageSchema),
   });
-
-  const submitMessage = async (message: CreateMessage) => {
-    await sendMessage(userLoged?.token!, message);
-    window.location.reload();
-  };
 
   return (
     <>

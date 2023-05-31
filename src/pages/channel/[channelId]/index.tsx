@@ -7,8 +7,8 @@ import styles from "../../../styles/styles.module.css";
 import Link from "next/link";
 import { ChannelListRenderer } from "@/components/channel/ChannelListRenderer";
 import { GetChannelType, GetChannelsType } from "@/types/Channel";
-import { getMessagesByChannelId } from "@/api/message";
-import { GetMessagesType } from "@/types/Message";
+import { getMessagesByChannelId, sendMessage } from "@/api/message";
+import { CreateMessage, GetMessagesType } from "@/types/Message";
 import { MessageRenderer } from "@/components/message/MessageRenderer";
 import { MessageInput } from "@/components/message/MessageInput";
 
@@ -46,6 +46,12 @@ const MessageChannel = ({
   messages: GetMessagesType;
 }) => {
   const user: User = session?.user;
+
+  const submitMessage = async (message: CreateMessage) => {
+    await sendMessage(user?.token!, message);
+    window.location.reload();
+  };
+
   return (
     <>
       <NavBar />
@@ -94,8 +100,8 @@ const MessageChannel = ({
                         messages={messages.messages.reverse()}
                       />
                       <MessageInput
+                        submitMessage={submitMessage}
                         channelId={messages.channelId}
-                        userLoged={user}
                       />
                     </div>
                   </div>
