@@ -7,11 +7,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import CreateMessageSchema from "@/schema/CreateMessageSchema";
 import { ShowError } from "../ShowError";
 
-export const MessageInput: React.FC<{ channelId?: number; recipientId?: number; submitMessage: (message: CreateMessage) => void }> = ({
-  channelId,
-  recipientId,
-  submitMessage,
-}) => {
+export const MessageInput: React.FC<{
+  channelId?: number;
+  recipientId?: number;
+  submitMessage: (message: CreateMessage) => void;
+}> = ({ channelId, recipientId, submitMessage }) => {
   const {
     register,
     formState: { errors },

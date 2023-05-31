@@ -42,4 +42,4 @@ export const getMessageByUser = async (token: string, userId: number) => {
       return err;
     });
   return res;
-}
+};

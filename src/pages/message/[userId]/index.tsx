@@ -29,7 +29,13 @@ export async function getServerSideProps(context: any) {
   };
 }
 
-const PrivateMessage = ({ session, messageByUser }: { session: GetSessionType, messageByUser: GetPrivateMessageType }) => {
+const PrivateMessage = ({
+  session,
+  messageByUser,
+}: {
+  session: GetSessionType;
+  messageByUser: GetPrivateMessageType;
+}) => {
   const userLoged: User = session?.user;
   const { userId } = messageByUser;
 
@@ -50,17 +56,13 @@ const PrivateMessage = ({ session, messageByUser }: { session: GetSessionType, m
                   <div className="row">
                     <div className="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
                       <div className="p-3">
-                        <div id={styles.leftSide}>
-                          User List
-                        </div>
+                        <div id={styles.leftSide}>User List</div>
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-7 col-xl-8">
                       <nav className="navbar navbar-light bg-light">
                         <div className="container-fluid">
-                          <div className="navbar-brand">
-                            Id user: {userId}
-                          </div>
+                          <div className="navbar-brand">Id user: {userId}</div>
                         </div>
                       </nav>
                       <MessageRenderer
@@ -80,7 +82,7 @@ const PrivateMessage = ({ session, messageByUser }: { session: GetSessionType, m
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
 export default PrivateMessage;

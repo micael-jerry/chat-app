@@ -1,9 +1,7 @@
 import { addMembers, getChannelById } from "@/api/channel";
 import { NavBar } from "@/components/NavBar";
 import { EditChannel } from "@/components/channel/EditChannel";
-import {
-  addMembersToChannelInputTypeToMembersType,
-} from "@/operations/channel/ChannelMapper";
+import { addMembersToChannelInputTypeToMembersType } from "@/operations/channel/ChannelMapper";
 import { AddMembersToChannelInputType, GetChannelType } from "@/types/Channel";
 import { GetSessionType } from "@/types/Session";
 import { User } from "@/types/User";

@@ -30,5 +30,5 @@ export type GetChannelMessagesType = {
 export type GetPrivateMessageType = {
   status: boolean;
   userId: number;
-  messages: Message[]
-}
+  messages: Message[];
+};
