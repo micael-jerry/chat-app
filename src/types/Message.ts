@@ -21,8 +21,14 @@ export type SenderMessage = {
   email: string;
 };
 
-export type GetMessagesType = {
+export type GetChannelMessagesType = {
   status: boolean;
   channelId: number;
   messages: Message[];
 };
+
+export type GetPrivateMessageType = {
+  status: boolean;
+  userId: number;
+  messages: Message[]
+}

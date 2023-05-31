@@ -8,7 +8,7 @@ import Link from "next/link";
 import { ChannelListRenderer } from "@/components/channel/ChannelListRenderer";
 import { GetChannelType, GetChannelsType } from "@/types/Channel";
 import { getMessagesByChannelId, sendMessage } from "@/api/message";
-import { CreateMessage, GetMessagesType } from "@/types/Message";
+import { CreateMessage, GetChannelMessagesType } from "@/types/Message";
 import { MessageRenderer } from "@/components/message/MessageRenderer";
 import { MessageInput } from "@/components/message/MessageInput";
 
@@ -43,7 +43,7 @@ const MessageChannel = ({
   session: GetSessionType;
   channel: GetChannelType;
   channels: GetChannelsType;
-  messages: GetMessagesType;
+  messages: GetChannelMessagesType;
 }) => {
   const user: User = session?.user;
 
