@@ -26,7 +26,7 @@ export async function getServerSideProps(context: any) {
   }
 
   let messageByUser = await getMessageByUser(user?.token!, Number(userId));
-  let users = await getUsers(user?.token!)
+  let users = await getUsers(user?.token!);
   return {
     props: { session, messageByUser: { ...messageByUser, userId }, users },
   };
@@ -35,11 +35,11 @@ export async function getServerSideProps(context: any) {
 const PrivateMessage = ({
   session,
   messageByUser,
-  users
+  users,
 }: {
   session: GetSessionType;
   messageByUser: GetPrivateMessageType;
-  users: GetUsersType
+  users: GetUsersType;
 }) => {
   const userLoged: User = session?.user;
   const { userId } = messageByUser;

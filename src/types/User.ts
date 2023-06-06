@@ -32,12 +32,12 @@ export type LogResponse = {
 
 export type GetUsersType = {
   status: boolean;
-  users: UserItemGetUsersType[]
-}
+  users: UserItemGetUsersType[];
+};
 
 export type UserItemGetUsersType = {
   id: number;
   name: string;
   email: string;
   bio: string | null;
-}
+};

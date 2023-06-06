@@ -51,11 +51,7 @@ export const addMembers = async (
   members: AddMembersType
 ) => {
   const res = await axios
-    .post(
-      `${BASE_URL}/channels/${channelId}/members`,
-      members,
-      config(token)
-    )
+    .post(`${BASE_URL}/channels/${channelId}/members`, members, config(token))
     .then((res) => {
       return res;
     })

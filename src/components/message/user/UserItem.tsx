@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { UserItemGetUsersType } from "@/types/User";
 
-export const UserItem: React.FC<{ userItem: UserItemGetUsersType }> = ({ userItem }) => {
+export const UserItem: React.FC<{ userItem: UserItemGetUsersType }> = ({
+  userItem,
+}) => {
   const { name, email, id } = userItem;
   return (
     <li className="p-2 border-bottom">
