@@ -15,7 +15,7 @@ export const EditChannel: React.FC<{
   const {
     formState: { errors },
     handleSubmit,
-    control
+    control,
   } = useForm({
     resolver: yupResolver(EditChannelSchema),
   });
@@ -34,23 +34,21 @@ export const EditChannel: React.FC<{
                 Members
               </label>
               <Controller
-                  name="members"
-                  control={control}
-                  render={({ field: { onChange, value } }) => (
-                    <Select
-                      isMulti
-                      options={options}
-                      value={options.find(
-                        (option: UserSelectOptionType) => option.value === value
-                      )}
-                      onChange={(
-                        optionsValues: MultiValue<UserSelectOptionType>
-                      ) =>
-                        onChange(optionsValues.map((option) => option.value))
-                      }
-                    />
-                  )}
-                />
+                name="members"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Select
+                    isMulti
+                    options={options}
+                    value={options.find(
+                      (option: UserSelectOptionType) => option.value === value
+                    )}
+                    onChange={(
+                      optionsValues: MultiValue<UserSelectOptionType>
+                    ) => onChange(optionsValues.map((option) => option.value))}
+                  />
+                )}
+              />
               {errors.members && (
                 <ShowError>{errors.members.message}</ShowError>
               )}

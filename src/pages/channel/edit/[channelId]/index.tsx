@@ -32,20 +32,16 @@ export async function getServerSideProps(context: any) {
 const EditChannelPage = ({
   session,
   channel,
-  users
+  users,
 }: {
   session: GetSessionType;
   channel: GetChannelType;
-  users: GetUsersType
+  users: GetUsersType;
 }) => {
   const user: User = session?.user;
   const route = useRouter();
   const submitHandler = async (members: AddMembersToChannelInputType) => {
-    await addMembers(
-      user?.token!,
-      channel.channel.id,
-      members
-    ).then((res) => {
+    await addMembers(user?.token!, channel.channel.id, members).then((res) => {
       route.push(`/channel/${channel.channel.id}`);
     });
   };
@@ -53,7 +49,11 @@ const EditChannelPage = ({
   return (
     <>
       <NavBar />
-      <EditChannel channel={channel.channel} submitHandler={submitHandler} users={users.users} />
+      <EditChannel
+        channel={channel.channel}
+        submitHandler={submitHandler}
+        users={users.users}
+      />
     </>
   );
 };
