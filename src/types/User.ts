@@ -45,4 +45,4 @@ export type UserItemGetUsersType = {
 export type UserSelectOptionType = {
   value: number;
   label: string;
-}
+};

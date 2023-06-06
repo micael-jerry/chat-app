@@ -23,26 +23,30 @@ export const getServerSideProps = async (context: any) => {
   return {
     props: {
       session,
-      users
+      users,
     },
   };
 };
 
-export const Create = ({ session, users }: { session: GetSessionType, users: GetUsersType }) => {
+export const Create = ({
+  session,
+  users,
+}: {
+  session: GetSessionType;
+  users: GetUsersType;
+}) => {
   const user: User = session?.user;
   const route = useRouter();
 
   const submitHandler = async (channel: CreateChannelType) => {
-    await createChannel(
-      user?.token!,
-      createChannelMapper(channel)
-    ).then((res) => {
-      const channelCreated: GetChannelType = res.data;
-      route.push(`/channel/${channelCreated.channel.id}`);
-    }).catch(err => {
-      console.log(err);
-      
-    })
+    await createChannel(user?.token!, createChannelMapper(channel))
+      .then((res) => {
+        const channelCreated: GetChannelType = res.data;
+        route.push(`/channel/${channelCreated.channel.id}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return <CreateChannel submitHandler={submitHandler} users={users.users} />;

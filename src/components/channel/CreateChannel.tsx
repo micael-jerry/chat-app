@@ -9,14 +9,14 @@ import Select, { MultiValue } from "react-select";
 
 export const CreateChannel: React.FC<{
   submitHandler: (channel: CreateChannelType) => void;
-  users: UserItemGetUsersType[]
+  users: UserItemGetUsersType[];
 }> = ({ submitHandler, users }) => {
   const {
     register,
     formState: { errors },
     handleSubmit,
     watch,
-    control
+    control,
   } = useForm({
     resolver: yupResolver(CreateChannelSchema),
   });
@@ -67,8 +67,14 @@ export const CreateChannel: React.FC<{
                     <Select
                       isMulti
                       options={options}
-                      value={options.find((option: UserSelectOptionType) => option.value === value)}
-                      onChange={(optionsValues: MultiValue<UserSelectOptionType>) => onChange(optionsValues.map((option) => option.value))}
+                      value={options.find(
+                        (option: UserSelectOptionType) => option.value === value
+                      )}
+                      onChange={(
+                        optionsValues: MultiValue<UserSelectOptionType>
+                      ) =>
+                        onChange(optionsValues.map((option) => option.value))
+                      }
                     />
                   )}
                 />

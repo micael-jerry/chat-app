@@ -6,9 +6,7 @@ const CreateChannelSchema = yup.object({
     .string()
     .oneOf(["private", "public"])
     .required("Type must be public or private"),
-  members: yup
-    .array()
-    .of(yup.number())
+  members: yup.array().of(yup.number()),
 });
 
 export default CreateChannelSchema;
