@@ -5,7 +5,7 @@ export type CreateChannelType = {
 };
 
 export type AddMembersToChannelInputType = {
-  members?: string;
+  members?: number[];
 };
 
 export type AddMembersType = {

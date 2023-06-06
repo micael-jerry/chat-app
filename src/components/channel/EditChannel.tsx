@@ -1,20 +1,26 @@
 import { Channel } from "@/types/Channel";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import EditChannelSchema from "@/schema/EditChannelSchema";
 import { ShowError } from "../ShowError";
+import Select, { MultiValue } from "react-select";
+import { UserItemGetUsersType, UserSelectOptionType } from "@/types/User";
+import { selectOptionUsers } from "@/utils/selectOptionUsers";
 
 export const EditChannel: React.FC<{
   channel: Channel;
-  submitHandler: ({ members }: { members?: string }) => void;
-}> = ({ channel, submitHandler }) => {
+  submitHandler: ({ members }: { members?: number[] }) => void;
+  users: UserItemGetUsersType[];
+}> = ({ channel, submitHandler, users }) => {
   const {
-    register,
     formState: { errors },
     handleSubmit,
+    control
   } = useForm({
     resolver: yupResolver(EditChannelSchema),
   });
+  const options: UserSelectOptionType[] = selectOptionUsers(users);
+
   return (
     <div>
       <div>
@@ -27,12 +33,24 @@ export const EditChannel: React.FC<{
               <label htmlFor="members" className="form-label">
                 Members
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id="members"
-                {...register("members")}
-              />
+              <Controller
+                  name="members"
+                  control={control}
+                  render={({ field: { onChange, value } }) => (
+                    <Select
+                      isMulti
+                      options={options}
+                      value={options.find(
+                        (option: UserSelectOptionType) => option.value === value
+                      )}
+                      onChange={(
+                        optionsValues: MultiValue<UserSelectOptionType>
+                      ) =>
+                        onChange(optionsValues.map((option) => option.value))
+                      }
+                    />
+                  )}
+                />
               {errors.members && (
                 <ShowError>{errors.members.message}</ShowError>
               )}

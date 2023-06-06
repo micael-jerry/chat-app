@@ -1,10 +1,10 @@
 import { addMembers, getChannelById } from "@/api/channel";
+import { getUsers } from "@/api/user";
 import { NavBar } from "@/components/NavBar";
 import { EditChannel } from "@/components/channel/EditChannel";
-import { addMembersToChannelInputTypeToMembersType } from "@/operations/channel/ChannelMapper";
 import { AddMembersToChannelInputType, GetChannelType } from "@/types/Channel";
 import { GetSessionType } from "@/types/Session";
-import { User } from "@/types/User";
+import { GetUsersType, User } from "@/types/User";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
@@ -23,17 +23,20 @@ export async function getServerSideProps(context: any) {
     };
   }
   let channel = await getChannelById(user?.token!, Number(channelId));
+  let users = await getUsers(user?.token!);
   return {
-    props: { session, channel },
+    props: { session, channel, users },
   };
 }
 
 const EditChannelPage = ({
   session,
   channel,
+  users
 }: {
   session: GetSessionType;
   channel: GetChannelType;
+  users: GetUsersType
 }) => {
   const user: User = session?.user;
   const route = useRouter();
@@ -41,7 +44,7 @@ const EditChannelPage = ({
     await addMembers(
       user?.token!,
       channel.channel.id,
-      addMembersToChannelInputTypeToMembersType(members)
+      members
     ).then((res) => {
       route.push(`/channel/${channel.channel.id}`);
     });
@@ -50,7 +53,7 @@ const EditChannelPage = ({
   return (
     <>
       <NavBar />
-      <EditChannel channel={channel.channel} submitHandler={submitHandler} />
+      <EditChannel channel={channel.channel} submitHandler={submitHandler} users={users.users} />
     </>
   );
 };

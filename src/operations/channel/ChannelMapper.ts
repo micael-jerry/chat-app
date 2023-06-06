@@ -17,14 +17,6 @@ export const createChannelMapper = (
   };
 };
 
-export const addMembersToChannelInputTypeToMembersType = (
-  inputMembers: AddMembersToChannelInputType
-): AddMembersType => {
-  return {
-    members: membersChannelConvert(inputMembers.members),
-  };
-};
-
 export const membersChannelConvert = (
   membersString: string | undefined | null
 ): number[] => {
