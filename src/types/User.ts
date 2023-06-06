@@ -29,3 +29,15 @@ export type LogResponse = {
   status: boolean;
   user: User;
 };
+
+export type GetUsersType = {
+  status: boolean;
+  users: UserItemGetUsersType[]
+}
+
+export type UserItemGetUsersType = {
+  id: number;
+  name: string;
+  email: string;
+  bio: string | null;
+}

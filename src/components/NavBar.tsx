@@ -23,6 +23,11 @@ export const NavBar: React.FC = () => {
           {data?.user !== undefined && (
             <div className="d-flex">
               <div className="me-2 ms-2">
+                <Link href={"/message"} className="btn btn-outline-secondary">
+                  Message
+                </Link>
+              </div>
+              <div className="me-2 ms-2">
                 <Link href={"/channel"} className="btn btn-outline-secondary">
                   Channel
                 </Link>

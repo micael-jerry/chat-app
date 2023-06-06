@@ -1,11 +1,13 @@
 import styles from "../../../styles/styles.module.css";
 import { getMessageByUser, sendMessage } from "@/api/message";
+import { getUsers } from "@/api/user";
 import { NavBar } from "@/components/NavBar";
 import { MessageInput } from "@/components/message/MessageInput";
 import { MessageRenderer } from "@/components/message/MessageRenderer";
+import { UserListRenderer } from "@/components/message/user/UserListRenderer";
 import { CreateMessage, GetPrivateMessageType } from "@/types/Message";
 import { GetSessionType } from "@/types/Session";
-import { User } from "@/types/User";
+import { GetUsersType, User } from "@/types/User";
 import { getSession } from "next-auth/react";
 
 export async function getServerSideProps(context: any) {
@@ -24,17 +26,20 @@ export async function getServerSideProps(context: any) {
   }
 
   let messageByUser = await getMessageByUser(user?.token!, Number(userId));
+  let users = await getUsers(user?.token!)
   return {
-    props: { session, messageByUser: { ...messageByUser, userId } },
+    props: { session, messageByUser: { ...messageByUser, userId }, users },
   };
 }
 
 const PrivateMessage = ({
   session,
   messageByUser,
+  users
 }: {
   session: GetSessionType;
   messageByUser: GetPrivateMessageType;
+  users: GetUsersType
 }) => {
   const userLoged: User = session?.user;
   const { userId } = messageByUser;
@@ -56,7 +61,9 @@ const PrivateMessage = ({
                   <div className="row">
                     <div className="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
                       <div className="p-3">
-                        <div id={styles.leftSide}>User List</div>
+                        <div id={styles.leftSide}>
+                          <UserListRenderer users={users.users} />
+                        </div>
                       </div>
                     </div>
                     <div className="col-md-6 col-lg-7 col-xl-8">
