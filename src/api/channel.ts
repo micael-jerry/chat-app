@@ -1,10 +1,11 @@
 import axios from "axios";
 import { config } from "./config";
 import { AddMembersType, CreateChannelType } from "@/types/Channel";
+import BASE_URL from "./BASE_URL";
 
 export const getChannels = async (token: string) => {
   const request = await axios
-    .get("http://localhost:8080/channels", config(token))
+    .get(`${BASE_URL}/channels`, config(token))
     .then((res) => {
       return res.data;
     })
@@ -17,7 +18,7 @@ export const getChannels = async (token: string) => {
 
 export const getChannelById = async (token: string, channelId: number) => {
   const request = await axios
-    .get(`http://localhost:8080/channel/${channelId}`, config(token))
+    .get(`${BASE_URL}/channel/${channelId}`, config(token))
     .then((res) => {
       return res.data;
     })
@@ -33,7 +34,7 @@ export const createChannel = async (
   channel: CreateChannelType
 ) => {
   const res = await axios
-    .post("http://localhost:8080/channel", channel, config(token))
+    .post(`${BASE_URL}/channel`, channel, config(token))
     .then((res) => {
       return res;
     })
@@ -51,7 +52,7 @@ export const addMembers = async (
 ) => {
   const res = await axios
     .post(
-      `http://localhost:8080/channels/${channelId}/members`,
+      `${BASE_URL}/channels/${channelId}/members`,
       members,
       config(token)
     )

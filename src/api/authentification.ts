@@ -1,8 +1,9 @@
 import axios from "axios";
+import BASE_URL from "./BASE_URL";
 
 export const login = async (email: string, password: string) => {
   const res = await axios
-    .post("http://localhost:8080/users/login", {
+    .post(`${BASE_URL}/users/login`, {
       email: email,
       password: password,
     })
@@ -18,7 +19,7 @@ export const login = async (email: string, password: string) => {
 
 export const register = async (user: object) => {
   const res = await axios
-    .post("http://localhost:8080/users", user)
+    .post(`${BASE_URL}/users`, user)
     .then((res) => {
       return res;
     })

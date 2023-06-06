@@ -1,13 +1,14 @@
 import axios from "axios";
 import { config } from "./config";
 import { CreateMessage } from "@/types/Message";
+import BASE_URL from "./BASE_URL";
 
 export const getMessagesByChannelId = async (
   token: string,
   channelId: number
 ) => {
   const request = await axios
-    .get(`http://localhost:8080/messages/channel/${channelId}`, config(token))
+    .get(`${BASE_URL}/messages/channel/${channelId}`, config(token))
     .then((res) => {
       return res.data;
     })
@@ -20,7 +21,7 @@ export const getMessagesByChannelId = async (
 
 export const sendMessage = async (token: string, message: CreateMessage) => {
   const res = await axios
-    .post("http://localhost:8080/message", message, config(token))
+    .post(`${BASE_URL}/message`, message, config(token))
     .then((res) => {
       return res;
     })
@@ -33,7 +34,7 @@ export const sendMessage = async (token: string, message: CreateMessage) => {
 
 export const getMessageByUser = async (token: string, userId: number) => {
   const res = await axios
-    .get(`http://localhost:8080/messages/${userId}`, config(token))
+    .get(`${BASE_URL}/messages/${userId}`, config(token))
     .then((res) => {
       return res.data;
     })
