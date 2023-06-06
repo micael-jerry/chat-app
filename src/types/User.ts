@@ -41,3 +41,8 @@ export type UserItemGetUsersType = {
   email: string;
   bio: string | null;
 };
+
+export type UserSelectOptionType = {
+  value: number;
+  label: string;
+}

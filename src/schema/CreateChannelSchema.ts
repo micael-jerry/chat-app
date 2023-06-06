@@ -7,8 +7,8 @@ const CreateChannelSchema = yup.object({
     .oneOf(["private", "public"])
     .required("Type must be public or private"),
   members: yup
-    .string()
-    .matches(/^[\d,]*$/, "Must contain the member ids separated by a comma"),
+    .array()
+    .of(yup.number())
 });
 
 export default CreateChannelSchema;

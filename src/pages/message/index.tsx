@@ -4,7 +4,6 @@ import { GetUsersType, User } from "@/types/User";
 import { getSession } from "next-auth/react";
 import styles from "../../styles/styles.module.css";
 import Link from "next/link";
-import { ChannelListRenderer } from "@/components/channel/ChannelListRenderer";
 import { getUsers } from "@/api/user";
 import { UserListRenderer } from "@/components/message/user/UserListRenderer";
 

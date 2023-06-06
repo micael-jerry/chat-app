@@ -1,13 +1,7 @@
 export type CreateChannelType = {
-  name: string;
-  type: "public" | "private";
-  members: number[];
-};
-
-export type CreateChannelInputType = {
   name?: string;
-  type?: "public" | "private";
-  members?: string;
+  type?: string;
+  members?: number[];
 };
 
 export type AddMembersToChannelInputType = {

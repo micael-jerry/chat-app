@@ -1,20 +1,19 @@
 import {
   AddMembersToChannelInputType,
   AddMembersType,
-  CreateChannelInputType,
   CreateChannelType,
 } from "@/types/Channel";
 
-export const createChannelInputTypeToCreateChannelType = (
-  input: CreateChannelInputType
+export const createChannelMapper = (
+  input: CreateChannelType
 ): CreateChannelType => {
-  if (input.members && input.type === "public") {
-    input.members = "";
+  if (input.type === "public") {
+    input.members = [];
   }
   return {
-    name: input.name!,
-    type: input.type!,
-    members: membersChannelConvert(input.members),
+    name: input.name,
+    type: input.type,
+    members: input.members,
   };
 };
 
