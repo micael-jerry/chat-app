@@ -1,13 +1,13 @@
-import { CreateUser } from "@/types/User";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ShowError } from "../ShowError";
 import CreateUserSchema from "@/schema/CreateUserSchema";
+import { CreateUserInput } from "@/types/inputs/InputUser";
 export const Register = ({
   submitHandler,
 }: {
-  submitHandler: (createUser: CreateUser) => void;
+  submitHandler: (CreateUserInput: CreateUserInput) => void;
 }) => {
   const {
     register,
@@ -42,7 +42,7 @@ export const Register = ({
                 Email address
               </label>
               <input
-                type="text"
+                type="email"
                 className="form-control"
                 id="email"
                 {...register("email")}
@@ -90,8 +90,8 @@ export const Register = ({
               )}
             </div>
             <div className="mb-3">
-              <button className="btn btn-primary" type="submit">
-                Sign Up
+              <button className="registerButton btn btn-primary" type="submit">
+                Register
               </button>
             </div>
             <div>
