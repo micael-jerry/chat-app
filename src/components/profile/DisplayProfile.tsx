@@ -1,6 +1,7 @@
 import { User } from "@/types/User";
 import avatar from "../../ressources/avatar.webp";
 import Image from "next/image";
+import { formaterDate } from "@/utils/dateFormatter";
 
 export const DisplayProfile: React.FC<{ user: User }> = ({ user }) => {
   return (
@@ -27,7 +28,7 @@ export const DisplayProfile: React.FC<{ user: User }> = ({ user }) => {
                       </div>
                       <div className="col-6 mb-3">
                         <h6>Member since</h6>
-                        <p className="text-muted">{user?.createdAt}</p>
+                        <p className="text-muted">{formaterDate(user?.createdAt!)}</p>
                       </div>
                       <h6>Profile</h6>
                       <hr className="mt-0 mb-4" />
