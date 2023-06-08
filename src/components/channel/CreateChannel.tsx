@@ -1,4 +1,4 @@
-import { CreateChannelType } from "@/types/Channel";
+import { CreateChannelInputType } from "@/types/inputs/InputChannel";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CreateChannelSchema from "@/schema/CreateChannelSchema";
@@ -8,7 +8,7 @@ import { selectOptionUsers } from "@/utils/selectOptionUsers";
 import Select, { MultiValue } from "react-select";
 
 export const CreateChannel: React.FC<{
-  submitHandler: (channel: CreateChannelType) => void;
+  submitHandler: (createChannelInput: CreateChannelInputType) => void;
   users: UserItemGetUsersType[];
 }> = ({ submitHandler, users }) => {
   const {
@@ -32,16 +32,16 @@ export const CreateChannel: React.FC<{
               <h1>Create Channel</h1>
             </div>
             <div className="mb-3">
-              <label htmlFor="name" className="form-label">
-                Name
+              <label htmlFor="channelName" className="form-label">
+                Channel Name
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="name"
-                {...register("name")}
+                id="channelName"
+                {...register("channelName")}
               />
-              {errors.name && <ShowError>{errors.name.message}</ShowError>}
+              {errors.channelName && <ShowError>{errors.channelName.message}</ShowError>}
             </div>
             <div className="mb-3">
               <label htmlFor="type" className="form-label">
@@ -49,9 +49,9 @@ export const CreateChannel: React.FC<{
               </label>
               <select id="type" className="form-select" {...register("type")}>
                 <option defaultChecked={true} value="private">
-                  private
+                  Private
                 </option>
-                <option value="public">public</option>
+                <option value="public">Public</option>
               </select>
               {errors.type && <ShowError>{errors.type.message}</ShowError>}
             </div>
@@ -84,8 +84,8 @@ export const CreateChannel: React.FC<{
               </div>
             )}
             <div className="mb-3">
-              <button className="btn btn-primary" type="submit">
-                Create
+              <button className="createChannelButton btn btn-primary" type="submit">
+                Create Channel
               </button>
             </div>
           </form>

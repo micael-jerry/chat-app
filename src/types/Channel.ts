@@ -1,6 +1,6 @@
 export type CreateChannelType = {
-  name?: string;
-  type?: string;
+  name: string;
+  type: string;
   members?: number[];
 };
 

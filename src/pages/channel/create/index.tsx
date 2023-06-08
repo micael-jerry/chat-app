@@ -1,10 +1,11 @@
 import { createChannel } from "@/api/channel";
 import { getUsers } from "@/api/user";
 import { CreateChannel } from "@/components/channel/CreateChannel";
-import { createChannelMapper } from "@/operations/channel/ChannelMapper";
+import { inputToCreateChannel, refreshMembersCreateChannel } from "@/mapper/ChannelMapper";
 import { CreateChannelType, GetChannelType } from "@/types/Channel";
 import { GetSessionType } from "@/types/Session";
 import { GetUsersType, User } from "@/types/User";
+import { CreateChannelInputType } from "@/types/inputs/InputChannel";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
@@ -38,13 +39,15 @@ export const Create = ({
   const user: User = session?.user;
   const route = useRouter();
 
-  const submitHandler = async (channel: CreateChannelType) => {
-    await createChannel(user?.token!, createChannelMapper(channel))
-      .then((res) => {
+  const submitHandler = async (createChannelInput: CreateChannelInputType) => {
+    const createChannelData: CreateChannelType = inputToCreateChannel(createChannelInput);
+    await createChannel(user?.token!, refreshMembersCreateChannel(createChannelData))
+      .then(async (res) => {
         const channelCreated: GetChannelType = res.data;
-        route.push(`/channel/${channelCreated.channel.id}`);
+        await route.push(`/channel/${channelCreated.channel.id}`);
       })
-      .catch((err) => {
+      .catch(async (err) => {
+        await route.push("/channel/create")
         console.log(err);
       });
   };

@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 const CreateChannelSchema = yup.object({
-  name: yup.string().max(20).required(),
+  channelName: yup.string().max(20).required(),
   type: yup
     .string()
     .oneOf(["private", "public"])
