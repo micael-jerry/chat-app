@@ -1,14 +1,14 @@
-import { UserLogin } from "@/types/User";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import UserLoginSchema from "@/schema/UserLoginSchema";
 import { ShowError } from "../ShowError";
+import { UserLoginInput } from "@/types/inputs/InputUser";
 
 export const Login = ({
   submitHandler,
 }: {
-  submitHandler: (userLogin: UserLogin) => void;
+  submitHandler: (userLoginInput: UserLoginInput) => void;
 }) => {
   const {
     register,
@@ -52,13 +52,13 @@ export const Login = ({
               )}
             </div>
             <div className="mb-3">
-              <button className="btn btn-primary" type="submit">
-                Sign in
+              <button className="loginButton btn btn-primary" type="submit">
+                Login
               </button>
             </div>
             <div>
               <p>
-                Not a member? <Link href="/sign-up">Sign-up</Link>
+                Not a member? <Link href="/sign-up">Register</Link>
               </p>
             </div>
           </form>

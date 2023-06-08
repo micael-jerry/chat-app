@@ -1,14 +1,15 @@
 import { signIn, signOut } from "next-auth/react";
+import { UserLogin } from '@/types/User';
 
-export const login = async (email: string, password: string) => {
+export const login = async (userLogin: UserLogin) => {
   const signin = await signIn("credentials", {
     redirect: false,
-    email,
-    password,
+    email: userLogin.email,
+    password: userLogin.password,
   });
   return signin;
 };
 
-export const logout = () => {
-  signOut({ redirect: false });
+export const logout = async () => {
+  await signOut({ redirect: false });
 };

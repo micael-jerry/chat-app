@@ -4,3 +4,8 @@ export type CreateUserInput = {
     bio?: string | null;
     password?: string;
 };
+
+export type UserLoginInput = {
+    email?: string;
+    password?: string;
+};
