@@ -8,9 +8,11 @@ import Link from "next/link";
 import { ChannelListRenderer } from "@/components/channel/ChannelListRenderer";
 import { GetChannelType, GetChannelsType } from "@/types/Channel";
 import { getMessagesByChannelId, sendMessage } from "@/api/message";
-import { CreateMessage, GetChannelMessagesType } from "@/types/Message";
+import { GetChannelMessagesType, Message } from "@/types/Message";
 import { MessageRenderer } from "@/components/message/MessageRenderer";
 import { MessageInput } from "@/components/message/MessageInput";
+import { CreateMessageInput } from "@/types/inputs/InputMessage";
+import { inputToCreateMessage } from "@/mapper/MessageMapper";
 
 export async function getServerSideProps(context: any) {
   const regexChannelId = /^\d+$/;
@@ -47,10 +49,11 @@ const MessageChannel = ({
 }) => {
   const user: User = session?.user;
 
-  const submitMessage = async (message: CreateMessage) => {
-    await sendMessage(user?.token!, message);
+  const submitMessage = async (createMessageInput: CreateMessageInput) => {
+    await sendMessage(user?.token!, inputToCreateMessage(createMessageInput));
     window.location.reload();
   };
+  const messageList: Message[] = messages.messages.reverse();
 
   return (
     <>
@@ -97,7 +100,7 @@ const MessageChannel = ({
                       </nav>
                       <MessageRenderer
                         userLogedId={user?.id!}
-                        messages={messages.messages.reverse()}
+                        messages={messageList}
                       />
                       <MessageInput
                         submitMessage={submitMessage}
