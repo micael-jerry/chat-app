@@ -18,11 +18,17 @@ export const inputToUserLogin = (input: UserLoginInput): UserLogin => {
 };
 
 export const inputToUpdateUser = (input: UpdateUserInput): UpdateUser => {
+  if (input.name === "") {
+    input.name = undefined
+  }
   if (input.currentPassword === "") {
     input.currentPassword = undefined
   }
   if (input.newPassword === "") {
     input.newPassword = undefined
+  }
+  if (input.bio === "") {
+    input.bio = undefined
   }
 
   return {

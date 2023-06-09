@@ -74,6 +74,7 @@ export const DisplayProfile: React.FC<{ user: User, submitHandler: (updateUserIn
                   type="text"
                   className="form-control"
                   id="name"
+                  placeholder={user?.name!}
                   {...register("name")}
                 />
                 {errors.name && <ShowError>{errors.name.message}</ShowError>}
@@ -88,6 +89,7 @@ export const DisplayProfile: React.FC<{ user: User, submitHandler: (updateUserIn
                   className="form-control"
                   id="email"
                   disabled
+                  placeholder={user?.email!}
                 />
               </div>
               <div className="mb-3">
@@ -98,6 +100,7 @@ export const DisplayProfile: React.FC<{ user: User, submitHandler: (updateUserIn
                   type="password"
                   id="currentPassword"
                   className="form-control"
+                  placeholder="********"
                   {...register("currentPassword")}
                 />
                 {errors.currentPassword && (
@@ -112,6 +115,7 @@ export const DisplayProfile: React.FC<{ user: User, submitHandler: (updateUserIn
                   type="password"
                   id="newPassword"
                   className="form-control"
+                  placeholder="********"
                   {...register("newPassword")}
                 />
                 {errors.newPassword && (
@@ -126,6 +130,7 @@ export const DisplayProfile: React.FC<{ user: User, submitHandler: (updateUserIn
                   type="password"
                   id="confirmPassword"
                   className="form-control"
+                  placeholder="********"
                   {...register("confirmPassword")}
                 />
                 {errors.confirmPassword && (
@@ -140,6 +145,7 @@ export const DisplayProfile: React.FC<{ user: User, submitHandler: (updateUserIn
                   type="text"
                   className="form-control"
                   id="bio"
+                  placeholder={user?.bio ? user.bio : "input bio"}
                   {...register("bio")}
                 />
                 {errors.bio && <ShowError>{errors.bio.message}</ShowError>}

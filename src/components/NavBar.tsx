@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import React from "react";
 
 export const NavBar: React.FC = () => {
-  const { data } = useSession();
   const route = useRouter();
 
   const logOutAndRedirect = async () => {
@@ -20,7 +19,6 @@ export const NavBar: React.FC = () => {
           <Link href={"/"} className="navbar-brand">
             CHAT-APP
           </Link>
-          {data?.user !== undefined && (
             <div className="d-flex">
               <div className="me-2 ms-2">
                 <Link href={"/message"} className="btn btn-outline-secondary">
@@ -34,7 +32,7 @@ export const NavBar: React.FC = () => {
               </div>
               <div className="me-2 ms-2">
                 <Link href={"/profile"} className="btn btn-outline-secondary">
-                  {data?.user?.name}
+                  Profile
                 </Link>
               </div>
               <div className="me-2 ms-2">
@@ -46,7 +44,6 @@ export const NavBar: React.FC = () => {
                 </button>
               </div>
             </div>
-          )}
         </div>
       </nav>
     </>

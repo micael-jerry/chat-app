@@ -42,6 +42,11 @@ export type GetUsersType = {
   users: UserItemGetUsersType[];
 };
 
+export type GetUserType = {
+  status: boolean;
+  user: User
+}
+
 export type UserItemGetUsersType = {
   id: number;
   name: string;
