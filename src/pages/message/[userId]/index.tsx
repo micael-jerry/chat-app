@@ -5,9 +5,11 @@ import { NavBar } from "@/components/NavBar";
 import { MessageInput } from "@/components/message/MessageInput";
 import { MessageRenderer } from "@/components/message/MessageRenderer";
 import { UserListRenderer } from "@/components/message/user/UserListRenderer";
-import { CreateMessage, GetPrivateMessageType } from "@/types/Message";
+import { inputToCreateMessage } from "@/mapper/MessageMapper";
+import { GetPrivateMessageType, Message } from "@/types/Message";
 import { GetSessionType } from "@/types/Session";
 import { GetUsersType, User } from "@/types/User";
+import { CreateMessageInput } from "@/types/inputs/InputMessage";
 import { getSession } from "next-auth/react";
 
 export async function getServerSideProps(context: any) {
@@ -44,10 +46,11 @@ const PrivateMessage = ({
   const userLoged: User = session?.user;
   const { userId } = messageByUser;
 
-  const submitMessage = async (message: CreateMessage) => {
-    await sendMessage(userLoged?.token!, message);
+  const submitMessage = async (createMessageInput: CreateMessageInput) => {
+    await sendMessage(userLoged?.token!, inputToCreateMessage(createMessageInput));
     window.location.reload();
   };
+  const messageList: Message[] = messageByUser.messages.reverse()
 
   return (
     <>
@@ -74,7 +77,7 @@ const PrivateMessage = ({
                       </nav>
                       <MessageRenderer
                         userLogedId={userLoged?.id!}
-                        messages={messageByUser.messages.reverse()}
+                        messages={messageList}
                       />
                       <MessageInput
                         submitMessage={submitMessage}

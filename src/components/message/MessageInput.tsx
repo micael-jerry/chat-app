@@ -1,16 +1,16 @@
 import styles from "../../styles/styles.module.css";
 import avatar from "../../ressources/avatar.webp";
 import Image from "next/image";
-import { CreateMessage } from "@/types/Message";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CreateMessageSchema from "@/schema/CreateMessageSchema";
 import { ShowError } from "../ShowError";
+import { CreateMessageInput } from "@/types/inputs/InputMessage";
 
 export const MessageInput: React.FC<{
   channelId?: number;
   recipientId?: number;
-  submitMessage: (message: CreateMessage) => void;
+  submitMessage: (message: CreateMessageInput) => void;
 }> = ({ channelId, recipientId, submitMessage }) => {
   const {
     register,
@@ -20,7 +20,7 @@ export const MessageInput: React.FC<{
     defaultValues: {
       channelId: channelId && channelId,
       recipientId: recipientId && recipientId,
-      content: "",
+      message: "",
     },
     resolver: yupResolver(CreateMessageSchema),
   });
@@ -32,13 +32,13 @@ export const MessageInput: React.FC<{
         <input
           type="textarea"
           className="form-control form-control-lg"
-          id="content"
+          id="message"
           placeholder="Type message"
-          {...register("content")}
+          {...register("message")}
         />
-        <button onClick={handleSubmit(submitMessage)}>Send</button>
+        <button className="sendMessageButton" onClick={handleSubmit(submitMessage)}>Send Message</button>
       </div>
-      {errors.content && <ShowError>{errors.content.message}</ShowError>}
+      {errors.message && <ShowError>{errors.message.message}</ShowError>}
     </>
   );
 };
