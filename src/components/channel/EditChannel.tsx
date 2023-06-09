@@ -6,10 +6,11 @@ import { ShowError } from "../ShowError";
 import Select, { MultiValue } from "react-select";
 import { UserItemGetUsersType, UserSelectOptionType } from "@/types/User";
 import { selectOptionUsers } from "@/utils/selectOptionUsers";
+import { AddMembersToChannelInputType } from "@/types/inputs/InputChannel";
 
 export const EditChannel: React.FC<{
   channel: Channel;
-  submitHandler: ({ members }: { members?: number[] }) => void;
+  submitHandler: (addMembersToChannelInput: AddMembersToChannelInputType) => void;
   users: UserItemGetUsersType[];
 }> = ({ channel, submitHandler, users }) => {
   const {
@@ -54,8 +55,8 @@ export const EditChannel: React.FC<{
               )}
             </div>
             <div className="mb-3">
-              <button className="btn btn-primary" type="submit">
-                Add
+              <button className="editChannelButton btn btn-primary" type="submit">
+                Edit Channel
               </button>
             </div>
           </form>

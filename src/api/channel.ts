@@ -1,6 +1,6 @@
 import axios from "axios";
 import { config } from "./config";
-import { AddMembersType, CreateChannelType } from "@/types/Channel";
+import { AddMembersToChannelType, CreateChannelType } from "@/types/Channel";
 import BASE_URL from "./BASE_URL";
 
 export const getChannels = async (token: string) => {
@@ -48,7 +48,7 @@ export const createChannel = async (
 export const addMembers = async (
   token: string,
   channelId: number,
-  members: AddMembersType
+  members: AddMembersToChannelType
 ) => {
   const res = await axios
     .post(`${BASE_URL}/channels/${channelId}/members`, members, config(token))

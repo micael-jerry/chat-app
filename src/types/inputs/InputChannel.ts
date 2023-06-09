@@ -3,3 +3,7 @@ export type CreateChannelInputType = {
     type?: string;
     members?: number[];
 };
+
+export type AddMembersToChannelInputType = {
+    members?: number[];
+};

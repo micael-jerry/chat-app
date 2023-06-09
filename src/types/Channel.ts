@@ -4,12 +4,8 @@ export type CreateChannelType = {
   members?: number[];
 };
 
-export type AddMembersToChannelInputType = {
-  members?: number[];
-};
-
-export type AddMembersType = {
-  members?: number[];
+export type AddMembersToChannelType = {
+  members: number[];
 };
 
 export type Channel = {

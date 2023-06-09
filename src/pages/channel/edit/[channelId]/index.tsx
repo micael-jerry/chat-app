@@ -2,9 +2,11 @@ import { addMembers, getChannelById } from "@/api/channel";
 import { getUsers } from "@/api/user";
 import { NavBar } from "@/components/NavBar";
 import { EditChannel } from "@/components/channel/EditChannel";
-import { AddMembersToChannelInputType, GetChannelType } from "@/types/Channel";
+import { inputToAddMembersChannelType } from "@/mapper/ChannelMapper";
+import { GetChannelType } from "@/types/Channel";
 import { GetSessionType } from "@/types/Session";
 import { GetUsersType, User } from "@/types/User";
+import { AddMembersToChannelInputType } from "@/types/inputs/InputChannel";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
@@ -40,10 +42,12 @@ const EditChannelPage = ({
 }) => {
   const user: User = session?.user;
   const route = useRouter();
-  const submitHandler = async (members: AddMembersToChannelInputType) => {
-    await addMembers(user?.token!, channel.channel.id, members).then((res) => {
-      route.push(`/channel/${channel.channel.id}`);
-    });
+
+  const submitHandler = async (addMembersToChannelInput: AddMembersToChannelInputType) => {
+    await addMembers(user?.token!, channel.channel.id, inputToAddMembersChannelType(addMembersToChannelInput))
+      .then(async () => {
+        await route.push(`/channel/${channel.channel.id}`);
+      });
   };
 
   return (
