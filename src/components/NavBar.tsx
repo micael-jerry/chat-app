@@ -8,9 +8,9 @@ export const NavBar: React.FC = () => {
   const { data } = useSession();
   const route = useRouter();
 
-  const logOutAndRedirect = () => {
-    route.push("/");
-    logout();
+  const logOutAndRedirect = async () => {
+    await route.push("/");
+    await logout();
   };
 
   return (
@@ -39,10 +39,10 @@ export const NavBar: React.FC = () => {
               </div>
               <div className="me-2 ms-2">
                 <button
-                  className="btn btn-outline-secondary"
-                  onClick={() => logOutAndRedirect()}
+                  className="logoutButton btn btn-outline-secondary"
+                  onClick={async () => logOutAndRedirect()}
                 >
-                  SignOut
+                  Logout
                 </button>
               </div>
             </div>
