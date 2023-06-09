@@ -41,7 +41,9 @@ export const CreateChannel: React.FC<{
                 id="channelName"
                 {...register("channelName")}
               />
-              {errors.channelName && <ShowError>{errors.channelName.message}</ShowError>}
+              {errors.channelName && (
+                <ShowError>{errors.channelName.message}</ShowError>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="type" className="form-label">
@@ -84,7 +86,10 @@ export const CreateChannel: React.FC<{
               </div>
             )}
             <div className="mb-3">
-              <button className="createChannelButton btn btn-primary" type="submit">
+              <button
+                className="createChannelButton btn btn-primary"
+                type="submit"
+              >
                 Create Channel
               </button>
             </div>

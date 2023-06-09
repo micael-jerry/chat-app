@@ -15,15 +15,15 @@ const RegisterPage = () => {
     register(inputToCreateUser(createUserInput))
       .then(async () => {
         const { email, password } = createUserInput;
-        const userLogin: UserLogin = inputToUserLogin({ email, password })
-        await login(userLogin)
-          .then(async () => {
-            await route.push("/profile");
-          });
-      }).catch(async (err) => {
-        await route.push("/sign-up")
-        console.log(err);
+        const userLogin: UserLogin = inputToUserLogin({ email, password });
+        await login(userLogin).then(async () => {
+          await route.push("/profile");
+        });
       })
+      .catch(async (err) => {
+        await route.push("/sign-up");
+        console.log(err);
+      });
   };
 
   return <Register submitHandler={submitHandler} />;

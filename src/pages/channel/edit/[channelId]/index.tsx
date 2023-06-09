@@ -43,11 +43,16 @@ const EditChannelPage = ({
   const user: User = session?.user;
   const route = useRouter();
 
-  const submitHandler = async (addMembersToChannelInput: AddMembersToChannelInputType) => {
-    await addMembers(user?.token!, channel.channel.id, inputToAddMembersChannelType(addMembersToChannelInput))
-      .then(async () => {
-        await route.push(`/channel/${channel.channel.id}`);
-      });
+  const submitHandler = async (
+    addMembersToChannelInput: AddMembersToChannelInputType
+  ) => {
+    await addMembers(
+      user?.token!,
+      channel.channel.id,
+      inputToAddMembersChannelType(addMembersToChannelInput)
+    ).then(async () => {
+      await route.push(`/channel/${channel.channel.id}`);
+    });
   };
 
   return (

@@ -13,7 +13,7 @@ const LoginPage = () => {
         await route.push("/profile");
       })
       .catch(async (err) => {
-        await route.push("/login")
+        await route.push("/login");
         console.log(err);
       });
   };

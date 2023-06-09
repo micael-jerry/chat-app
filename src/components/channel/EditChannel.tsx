@@ -10,7 +10,9 @@ import { AddMembersToChannelInputType } from "@/types/inputs/InputChannel";
 
 export const EditChannel: React.FC<{
   channel: Channel;
-  submitHandler: (addMembersToChannelInput: AddMembersToChannelInputType) => void;
+  submitHandler: (
+    addMembersToChannelInput: AddMembersToChannelInputType
+  ) => void;
   users: UserItemGetUsersType[];
 }> = ({ channel, submitHandler, users }) => {
   const {
@@ -55,7 +57,10 @@ export const EditChannel: React.FC<{
               )}
             </div>
             <div className="mb-3">
-              <button className="editChannelButton btn btn-primary" type="submit">
+              <button
+                className="editChannelButton btn btn-primary"
+                type="submit"
+              >
                 Edit Channel
               </button>
             </div>

@@ -1,7 +1,10 @@
 import { createChannel } from "@/api/channel";
 import { getUsers } from "@/api/user";
 import { CreateChannel } from "@/components/channel/CreateChannel";
-import { inputToCreateChannel, refreshMembersCreateChannel } from "@/mapper/ChannelMapper";
+import {
+  inputToCreateChannel,
+  refreshMembersCreateChannel,
+} from "@/mapper/ChannelMapper";
 import { CreateChannelType, GetChannelType } from "@/types/Channel";
 import { GetSessionType } from "@/types/Session";
 import { GetUsersType, User } from "@/types/User";
@@ -40,14 +43,18 @@ export const Create = ({
   const route = useRouter();
 
   const submitHandler = async (createChannelInput: CreateChannelInputType) => {
-    const createChannelData: CreateChannelType = inputToCreateChannel(createChannelInput);
-    await createChannel(user?.token!, refreshMembersCreateChannel(createChannelData))
+    const createChannelData: CreateChannelType =
+      inputToCreateChannel(createChannelInput);
+    await createChannel(
+      user?.token!,
+      refreshMembersCreateChannel(createChannelData)
+    )
       .then(async (res) => {
         const channelCreated: GetChannelType = res.data;
         await route.push(`/channel/${channelCreated.channel.id}`);
       })
       .catch(async (err) => {
-        await route.push("/channel/create")
+        await route.push("/channel/create");
         console.log(err);
       });
   };
