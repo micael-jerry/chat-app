@@ -26,17 +26,17 @@ export const putUser = async (token: string, user: object) => {
       return err;
     });
   return res;
-}
+};
 
 export const getUserLoged = async (token: string) => {
   const request = await axios
-  .get(`${BASE_URL}/user`, config(token))
-  .then((res) => {
-    return res.data;
-  })
-  .catch((err) => {
-    console.log(err);
-    return err;
-  });
-return request;
-}
+    .get(`${BASE_URL}/user`, config(token))
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+      return err;
+    });
+  return request;
+};

@@ -36,7 +36,12 @@ export const MessageInput: React.FC<{
           placeholder="Type message"
           {...register("message")}
         />
-        <button className="sendMessageButton" onClick={handleSubmit(submitMessage)}>Send Message</button>
+        <button
+          className="sendMessageButton"
+          onClick={handleSubmit(submitMessage)}
+        >
+          Send Message
+        </button>
       </div>
       {errors.message && <ShowError>{errors.message.message}</ShowError>}
     </>

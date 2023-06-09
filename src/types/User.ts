@@ -10,7 +10,7 @@ export type UpdateUser = {
   oldPassword?: string;
   password?: string;
   bio?: string;
-}
+};
 
 export type User =
   | {
@@ -44,8 +44,8 @@ export type GetUsersType = {
 
 export type GetUserType = {
   status: boolean;
-  user: User
-}
+  user: User;
+};
 
 export type UserItemGetUsersType = {
   id: number;

@@ -1,5 +1,5 @@
 export type CreateMessageInput = {
-    channelId?: number | null;
-    recipientId?: number | null;
-    message?: string;
+  channelId?: number | null;
+  recipientId?: number | null;
+  message?: string;
 };

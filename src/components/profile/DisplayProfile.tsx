@@ -8,10 +8,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import UpdateUserSchema from "@/schema/UpdateUserSchema";
 import { ShowError } from "../ShowError";
 
-export const DisplayProfile: React.FC<{ user: User, submitHandler: (updateUserInput: UpdateUserInput) => void }> = ({ user, submitHandler }) => {
-  const { register, formState: { errors }, handleSubmit } = useForm({
-    resolver: yupResolver(UpdateUserSchema)
-  })
+export const DisplayProfile: React.FC<{
+  user: User;
+  submitHandler: (updateUserInput: UpdateUserInput) => void;
+}> = ({ user, submitHandler }) => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(UpdateUserSchema),
+  });
 
   return (
     <section className="vh-100">
@@ -94,7 +101,7 @@ export const DisplayProfile: React.FC<{ user: User, submitHandler: (updateUserIn
               </div>
               <div className="mb-3">
                 <label htmlFor="currentPassword" className="form-label">
-                Current Password
+                  Current Password
                 </label>
                 <input
                   type="password"
@@ -109,7 +116,7 @@ export const DisplayProfile: React.FC<{ user: User, submitHandler: (updateUserIn
               </div>
               <div className="mb-3">
                 <label htmlFor="newPassword" className="form-label">
-                New Password
+                  New Password
                 </label>
                 <input
                   type="password"
@@ -124,7 +131,7 @@ export const DisplayProfile: React.FC<{ user: User, submitHandler: (updateUserIn
               </div>
               <div className="mb-3">
                 <label htmlFor="confirmPassword" className="form-label">
-                Confirm Password
+                  Confirm Password
                 </label>
                 <input
                   type="password"
@@ -151,7 +158,10 @@ export const DisplayProfile: React.FC<{ user: User, submitHandler: (updateUserIn
                 {errors.bio && <ShowError>{errors.bio.message}</ShowError>}
               </div>
               <div className="mb-3">
-                <button className="updateProfileButton btn btn-primary" type="submit">
+                <button
+                  className="updateProfileButton btn btn-primary"
+                  type="submit"
+                >
                   Update Profile
                 </button>
               </div>

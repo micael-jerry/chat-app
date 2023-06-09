@@ -21,22 +21,21 @@ export const getServerSideProps = async (context: any) => {
   const user: GetUserType = await getUserLoged(userSession?.token!);
   return {
     props: {
-      userLoged: user.user
+      userLoged: user.user,
     },
   };
 };
 
 const Profile = ({ userLoged }: { userLoged: User }) => {
-
   const submitHandler = async (updateUserInput: UpdateUserInput) => {
-    await putUser(userLoged?.token!,inputToUpdateUser(updateUserInput))
-    .then(() => {
-      window.location.reload()
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+    await putUser(userLoged?.token!, inputToUpdateUser(updateUserInput))
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>

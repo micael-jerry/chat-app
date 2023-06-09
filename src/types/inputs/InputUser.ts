@@ -15,4 +15,4 @@ export type UpdateUserInput = {
   currentPassword?: string;
   newPassword?: string;
   bio?: string;
-}
+};

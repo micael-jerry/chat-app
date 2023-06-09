@@ -19,31 +19,31 @@ export const NavBar: React.FC = () => {
           <Link href={"/"} className="navbar-brand">
             CHAT-APP
           </Link>
-            <div className="d-flex">
-              <div className="me-2 ms-2">
-                <Link href={"/message"} className="btn btn-outline-secondary">
-                  Message
-                </Link>
-              </div>
-              <div className="me-2 ms-2">
-                <Link href={"/channel"} className="btn btn-outline-secondary">
-                  Channel
-                </Link>
-              </div>
-              <div className="me-2 ms-2">
-                <Link href={"/profile"} className="btn btn-outline-secondary">
-                  Profile
-                </Link>
-              </div>
-              <div className="me-2 ms-2">
-                <button
-                  className="logoutButton btn btn-outline-secondary"
-                  onClick={async () => logOutAndRedirect()}
-                >
-                  Logout
-                </button>
-              </div>
+          <div className="d-flex">
+            <div className="me-2 ms-2">
+              <Link href={"/message"} className="btn btn-outline-secondary">
+                Message
+              </Link>
             </div>
+            <div className="me-2 ms-2">
+              <Link href={"/channel"} className="btn btn-outline-secondary">
+                Channel
+              </Link>
+            </div>
+            <div className="me-2 ms-2">
+              <Link href={"/profile"} className="btn btn-outline-secondary">
+                Profile
+              </Link>
+            </div>
+            <div className="me-2 ms-2">
+              <button
+                className="logoutButton btn btn-outline-secondary"
+                onClick={async () => logOutAndRedirect()}
+              >
+                Logout
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
     </>

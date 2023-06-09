@@ -47,10 +47,13 @@ const PrivateMessage = ({
   const { userId } = messageByUser;
 
   const submitMessage = async (createMessageInput: CreateMessageInput) => {
-    await sendMessage(userLoged?.token!, inputToCreateMessage(createMessageInput));
+    await sendMessage(
+      userLoged?.token!,
+      inputToCreateMessage(createMessageInput)
+    );
     window.location.reload();
   };
-  const messageList: Message[] = messageByUser.messages.reverse()
+  const messageList: Message[] = messageByUser.messages.reverse();
 
   return (
     <>
