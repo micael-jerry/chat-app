@@ -2,8 +2,17 @@ import { User } from "@/types/User";
 import avatar from "../../ressources/avatar.webp";
 import Image from "next/image";
 import { formaterDate } from "@/utils/dateFormatter";
+import { UpdateUserInput } from "@/types/inputs/InputUser";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import UpdateUserSchema from "@/schema/UpdateUserSchema";
+import { ShowError } from "../ShowError";
 
-export const DisplayProfile: React.FC<{ user: User }> = ({ user }) => {
+export const DisplayProfile: React.FC<{ user: User, submitHandler: (updateUserInput: UpdateUserInput) => void }> = ({ user, submitHandler }) => {
+  const { register, formState: { errors }, handleSubmit } = useForm({
+    resolver: yupResolver(UpdateUserSchema)
+  })
+
   return (
     <section className="vh-100">
       <div className="container py-5 h-100">
@@ -51,6 +60,96 @@ export const DisplayProfile: React.FC<{ user: User }> = ({ user }) => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="col col-lg-6 mb-4 mb-lg-0">
+            <form name="editProfileForm" onSubmit={handleSubmit(submitHandler)}>
+              <div className="mb-3">
+                <h1>Edit Profile</h1>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  {...register("name")}
+                />
+                {errors.name && <ShowError>{errors.name.message}</ShowError>}
+              </div>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email address
+                </label>
+                {/* Email not update */}
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  disabled
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="currentPassword" className="form-label">
+                Current Password
+                </label>
+                <input
+                  type="password"
+                  id="currentPassword"
+                  className="form-control"
+                  {...register("currentPassword")}
+                />
+                {errors.currentPassword && (
+                  <ShowError>{errors.currentPassword.message}</ShowError>
+                )}
+              </div>
+              <div className="mb-3">
+                <label htmlFor="newPassword" className="form-label">
+                New Password
+                </label>
+                <input
+                  type="password"
+                  id="newPassword"
+                  className="form-control"
+                  {...register("newPassword")}
+                />
+                {errors.newPassword && (
+                  <ShowError>{errors.newPassword.message}</ShowError>
+                )}
+              </div>
+              <div className="mb-3">
+                <label htmlFor="confirmPassword" className="form-label">
+                Confirm Password
+                </label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  className="form-control"
+                  {...register("confirmPassword")}
+                />
+                {errors.confirmPassword && (
+                  <ShowError>{errors.confirmPassword.message}</ShowError>
+                )}
+              </div>
+              <div className="mb-3">
+                <label htmlFor="bio" className="form-label">
+                  Bio
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="bio"
+                  {...register("bio")}
+                />
+                {errors.bio && <ShowError>{errors.bio.message}</ShowError>}
+              </div>
+              <div className="mb-3">
+                <button className="updateProfileButton btn btn-primary" type="submit">
+                  Update Profile
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

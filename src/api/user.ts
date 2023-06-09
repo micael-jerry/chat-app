@@ -14,3 +14,16 @@ export const getUsers = async (token: string) => {
     });
   return request;
 };
+
+export const putUser = async (token: string, user: object) => {
+  const res = await axios
+    .put(`${BASE_URL}/user`, user, config(token))
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+      return err;
+    });
+  return res;
+}

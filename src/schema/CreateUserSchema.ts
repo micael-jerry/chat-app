@@ -7,7 +7,7 @@ const CreateUserSchema = yup
     password: yup.string().required("Password Required"),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref("password"), ""], "Passwords must match")
+      .oneOf([yup.ref("password")], "Passwords must match")
       .required("Confirm password is required"),
     bio: yup.string().max(300),
   })

@@ -1,5 +1,5 @@
-import { CreateUser, UserLogin } from "@/types/User";
-import { CreateUserInput, UserLoginInput } from "@/types/inputs/InputUser";
+import { CreateUser, UpdateUser, UserLogin } from "@/types/User";
+import { CreateUserInput, UpdateUserInput, UserLoginInput } from "@/types/inputs/InputUser";
 
 export const inputToCreateUser = (input: CreateUserInput): CreateUser => {
   return {
@@ -16,3 +16,19 @@ export const inputToUserLogin = (input: UserLoginInput): UserLogin => {
     password: input.password!,
   };
 };
+
+export const inputToUpdateUser = (input: UpdateUserInput): UpdateUser => {
+  if (input.currentPassword === "") {
+    input.currentPassword = undefined
+  }
+  if (input.newPassword === "") {
+    input.newPassword = undefined
+  }
+
+  return {
+    name: input.name,
+    oldPassword: input.currentPassword,
+    password: input.newPassword,
+    bio: input.bio
+  }
+}

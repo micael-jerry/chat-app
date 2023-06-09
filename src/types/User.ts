@@ -5,6 +5,13 @@ export type CreateUser = {
   password: string;
 };
 
+export type UpdateUser = {
+  name?: string;
+  oldPassword?: string;
+  password?: string;
+  bio?: string;
+}
+
 export type User =
   | {
       id?: number;
